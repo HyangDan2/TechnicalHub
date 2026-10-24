@@ -10,4 +10,4 @@ This file records meaningful, dated changes to TechnicalHub documentation and pr
 - Implemented the empty project catalog contract, approved category vocabulary, deterministic validation, and static Korean project-link build. Hosting remains owned by another engineer.
 - Confirmed `https://github.com/hyangdan2/TechnicalHub` as the canonical repository; the initial project list is empty, only verified information is publishable, and the parent page and hosting are assigned to another engineer.
 - Replaced TechnicalHub's upper-right GitHub repository link with a Web-HQ return link and added a TechnicalHub card to the Web-HQ directory. Source-level navigation is bidirectional; hosted verification remains pending while the TechnicalHub Pages URL returns 404.
-- 2026-10-24: Pushed the static site to `main`, enabled GitHub Pages, and verified the public project page. Follow-up deployment workflow publishes only `dist/` through Actions.
+- 2026-10-24: Pushed the static site to `main`, enabled GitHub Pages, and verified the public project page. The Pages Actions workflow validates and builds before deploying only `dist/`; its first run succeeded.
