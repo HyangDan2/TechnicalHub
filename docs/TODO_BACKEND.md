@@ -1,29 +1,32 @@
 # Back-end engineer TODO
 
-**Status:** planned; no implementation is claimed. In the proposed static architecture, “Back-end” owns catalog/data contracts and build-time tooling; it does not imply a runtime server or API.
+**Status:** initial catalog contract, deterministic validation, and static build implemented. Hosting remains owned by another engineer.
 
 ## Work items
 
 | ID | Priority | Task and output | Depends on | Acceptance criteria | Status |
 | --- | --- | --- | --- | --- | --- |
-| BE-01 | P0 | Finalize catalog model, technology taxonomy, status values, and evidence vocabulary. | Product decisions in `ARCHITECTURE.md` | `technologies`, `projects`, references, inspected revision/date, evidence type, and status are specified with examples that are clearly non-production placeholders. | Planned |
-| BE-02 | P0 | Implement JSON schema and deterministic catalog validator. | BE-01 | Invalid shape, duplicate IDs/repos, unsafe URLs, bad taxonomy references, and missing published evidence fail with actionable messages. | Planned |
-| BE-03 | P0 | Create initial catalog only from user-approved real project URLs and write evidence notes. | BE-01; maintainer supplies project sources | Each published claim cites inspected files/docs at an exact commit; unsupported fields are omitted or marked unknown; no invented entries. | Blocked on source list |
-| BE-04 | P0 | Implement pure catalog operations used by UI and unit tests. | BE-01 | Published visibility, normalization, search/filter predicates, and safe URL policy have deterministic tests and no network dependency. | Planned |
-| BE-05 | P0 | Implement clean static build and public catalog transformation. | BE-02; repository layout from GIT-01 | Build validates first, clears and recreates `dist/`, copies only deployable files, preserves project subpath support, and never includes placeholders or drafts in public results. | Planned |
-| BE-06 | P1 | Implement local preview and bounded external link checker. | GIT-01; canonical base path when known | Preview serves the site at documented path; link checker has timeout/retry bounds, redirect reporting, and cannot affect deterministic verification. | Planned |
-| BE-07 | P1 | Implement hosted acceptance check after host and public URL are confirmed. | BE-05; GIT-03; hosting decision | Check reports page/catalog/assets and representative repository links against configured URL; failure identifies phase and does not mutate catalog. | Blocked on hosting decision |
-| BE-08 | P1 | Document data refresh and repeat-onboarding rules. | BE-01–BE-03 | Repeated repository requests update the stable entry; inspected revision/date are refreshed; changes to schema update examples, validator, UI fixtures, and tests together. | Planned |
+| BE-01 | P0 | Define catalog model and category vocabulary. | Product decisions | Schema and empty catalog use the approved fields and categories. | Done |
+| BE-02 | P0 | Implement JSON schema and deterministic catalog validator. | BE-01 | Invalid shape, duplicate IDs/repos, unsafe URLs, bad categories, and invalid dates fail with actionable errors. | Done |
+| BE-03 | P0 | Populate catalog from approved real project URLs. | Maintainer supplies project sources | Only verified entries are included; currently no sources and catalog remains empty. | Waiting for project URLs |
+| BE-04 | P0 | Implement catalog validation operations. | BE-01 | Validation is deterministic and has no network dependency. | Done |
+| BE-05 | P0 | Implement clean static build. | BE-02 | Build validates first, recreates `dist/`, and emits only the public project-link page and catalog. | Done |
+| BE-06 | P1 | Implement local preview and bounded external link checker. | BE-05 | Preview exists; external link checker remains a follow-up and is separate from deterministic verification. | Partial |
+| BE-07 | P1 | Implement hosted acceptance check. | Hosting details from hosting owner | Check page/catalog/assets and sample project links. | Out of scope for this owner |
+| BE-08 | P1 | Document catalog refresh rules. | BE-01–BE-03 | Repeated repository requests update stable entries and inspection date. | In progress |
 
-## Back-end boundaries
+## Catalog contract
 
-- Keep the catalog the single source of truth; do not duplicate records in UI markup.
-- Separate public display fields from evidence and maintenance notes where appropriate.
-- Do not call project code or install dependencies as a normal inspection step.
-- Do not add a database, API, or server without an approved architecture change.
-- Keep live network checks separate from local deterministic verification.
+`data/catalog.json` contains a version and an initially empty `projects` array. Each verified project has a stable kebab-case ID, Korean display name, HTTPS repository URL, one or more approved categories (`HW`, `SW`, `AI`, `Data`, `ML`, `DL`, `Utility`, `Etc`), and `inspectedAt` date. No project descriptions or detail pages are part of the first release. Only verified information is included.
 
-## Handoff
+## Boundaries
 
-Front-end can integrate once BE-01 is approved and BE-02 defines a stable contract and fixture. Release integration requires BE-05. BE-07 remains pending until repository identity, host, and public URL are confirmed.
+- Do not add a database, API, server, or deployment workflow without an approved architecture change.
+- Hosting and the parent page `https://github.com/hyangdan2` are owned by another engineer. This repository is `https://github.com/hyangdan2/TechnicalHub`.
+- Keep external network checks separate from local deterministic verification.
 
+## Commands
+
+- `npm run validate`: validate the catalog locally.
+- `npm run build`: validate and recreate the static site in `dist/`.
+- `npm run dev`: build, then serve the output at `http://localhost:4174` by default (`PORT` can override it).

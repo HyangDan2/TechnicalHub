@@ -1,28 +1,30 @@
 # Front-end engineer TODO
 
-**Status:** planned; no implementation is claimed. Each item has one accountable owner: Front-end engineer.
+**Status:** first pass aligned to the parent GameHub visual system; mobile and interaction acceptance checks remain.
+
+Product decisions are recorded in [Architecture](ARCHITECTURE.md): Korean UI, empty initial catalog, categories `HW`, `SW`, `AI`, `Data`, `ML`, `DL`, `Utility`, `Etc`, confirmed information only, direct project repository links, inspection date only, and hosting owned by another engineer.
 
 ## Work items
 
 | ID | Priority | Task and output | Depends on | Acceptance criteria | Status |
 | --- | --- | --- | --- | --- | --- |
-| FE-01 | P0 | Confirm page information architecture and interaction states; record approved wireframe or component outline. | Product decisions in `ARCHITECTURE.md` | Header, search, filters, project results, evidence/detail presentation, loading, empty, and error states are defined. | Planned |
-| FE-02 | P0 | Implement semantic page shell, responsive layout, and shared styles. | FE-01; Git admin provides repository skeleton | Landmark structure and heading order are valid; narrow and wide layouts have no unintended overflow; focus is visible; reduced motion is respected. | Planned |
-| FE-03 | P0 | Implement safe catalog loading and project card rendering. | BE-01 catalog contract; BE-02 renderer-facing fixture | Published records render; strings are inserted as text; missing/failed catalog state has a clear recovery message. | Planned |
-| FE-04 | P0 | Implement technology/category filters and project search. | BE-01 field names and taxonomy; FE-03 | Search and filters combine predictably, show the result count and active state, and can be reset; empty results are explained. | Planned |
-| FE-05 | P1 | Implement project detail/evidence presentation and outbound links. | Architecture decision on detail page vs panel; BE-01 evidence/public-source contract | Project identity, stack categories, evidence basis/date, and repository link are visible; outbound links use validated HTTPS destinations. | Planned |
-| FE-06 | P1 | Add keyboard, screen-size, text expansion, and browser behavior coverage. | FE-02–FE-05; BE-04 test fixtures | Browser tests cover keyboard operation, visible focus, representative widths, long labels, reduced motion, filter combinations, and load failure. | Planned |
-| FE-07 | P1 | Review final production build visually and fix UI defects. | BE-05 build output; GIT-02 CI preview/check path | Review screenshots at representative desktop and mobile widths; report actual browser and viewport; no unreviewed visual defect remains. | Planned |
+| FE-01 | P0 | Define page structure and interaction states. | Product decisions in `ARCHITECTURE.md` | Search, category filters, project results, loading, empty, and error states are defined; project links open repositories directly. | Complete |
+| FE-02 | P0 | Implement semantic page shell, responsive layout, and shared styles aligned with parent GameHub. | FE-01; source tree | Korean landmarks and heading order; narrow and wide layouts; visible focus; reduced-motion support; matching dark/lime palette, typography, shell width, hero and collection rhythm, controls, and footer. | Implemented; desktop visual reviewed; mobile review pending |
+| FE-03 | P0 | Load and safely render project links from the catalog. | Catalog contract in `data/catalog.json` | Project names are text; links are HTTPS from validated catalog; loading, empty, and failure states are presented. | Implemented; empty state visually confirmed |
+| FE-04 | P0 | Implement project search and category filters. | Catalog category vocabulary | Search and category combine; result count, selected state, and reset work; no-result state is clear. | Implemented; interaction acceptance pending |
+| FE-05 | P1 | Implement project detail/evidence presentation. | Product decision | Not in first release: only direct project links, categories, and inspection date are displayed. | Dropped by product decision |
+| FE-06 | P1 | Check keyboard, viewport, text expansion, and browser behavior. | FE-02–FE-04 | Browser checks cover keyboard/focus, representative widths, long labels, reduced motion, filters, and load failure. | Planned |
+| FE-07 | P1 | Review production build visually and fix UI defects against GameHub. | FE-02–FE-06; production artifact | Review desktop and mobile screenshots; record browser and viewport; fix observed defects. | Desktop reviewed in in-app browser at 1280px; mobile and interaction review pending |
+| FE-08 | P1 | Connect TechnicalHub and Web-HQ in both directions. | Web-HQ source and TechnicalHub Pages deployment | TechnicalHub's upper-right link opens Web-HQ; Web-HQ lists TechnicalHub; verify both directions on deployed URLs. | Source links implemented; public verification pending because TechnicalHub currently returns 404 |
 
-## Front-end boundaries
+## Boundaries
 
-- Consume the catalog contract from Back-end; do not invent fields in the UI.
-- Do not hardcode project cards or technology names in markup.
-- Do not add runtime calls to GitHub, package registries, or project sites to populate the interface.
-- Keep site UI claims aligned with evidence fields; do not display unknown values as confirmed facts.
-- Coordinate interface changes through the catalog contract, not simultaneous untracked assumptions.
+- Keep project records in the catalog; do not hardcode project cards or call external APIs at runtime.
+- Display no detail or evidence page in the first release.
+- Host configuration and release are owned by the other engineer.
+- Web-HQ is `https://hyangdan2.github.io/`; its hub directory should link to TechnicalHub, and TechnicalHub should provide a same-tab Web-HQ return link.
+- Treat the parent GameHub source at `../GameHub` as the visual reference; preserve its dark background, lime accent, typography, content width, header/hero/collection hierarchy, card borders, responsive behavior, and reduced-motion conventions while adapting arcade-specific content to project discovery.
 
 ## Handoff
 
-Front-end is ready for integration when FE-02 through FE-06 meet their acceptance criteria, required browser checks pass, and any remaining limitations are recorded. FE-07 requires a built production artifact and should be completed before release sign-off.
-
+Front-end handoff requires FE-02 through FE-06 acceptance checks and a record of remaining limitations. FE-07 is required before release sign-off; hosting remains the other engineer's responsibility.

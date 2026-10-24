@@ -1,17 +1,11 @@
 # TechnicalHub
 
-TechnicalHub is currently at the planning and documentation baseline. The product, architecture, and engineering work are described in `docs/`; this repository does not yet claim a working site, CI pipeline, or deployment.
+TechnicalHub is a Korean-language directory of verified software project links. The catalog currently has no entries; projects will be added after their repository information is inspected.
 
-## Documentation
+## Local commands
 
-- [Documentation index](docs/README.md)
-- [Architecture](docs/ARCHITECTURE.md)
-- [Harness guide](docs/HARNESS_GUIDE.md)
-- [Front-end work list](docs/TODO_FRONTEND.md)
-- [Back-end work list](docs/TODO_BACKEND.md)
-- [Git administration work list](docs/TODO_GIT_ADMIN.md)
-- [Changelog](docs/CHANGELOG.md)
+- `npm run validate` — validate the catalog without network access.
+- `npm run build` — create the static site in `dist/`.
+- `npm run dev` — build and preview at `http://localhost:4174` by default (`PORT` can override it).
 
-## Current setup
-
-There is no application build or test command configured yet. See the [harness guide](docs/HARNESS_GUIDE.md) for onboarding and the [TODO lists](docs/README.md) for planned work. Add commands here when the corresponding tooling is implemented and verified.
+Hosting and the parent GitHub page are maintained by another engineer. See [documentation](docs/README.md), [architecture](docs/ARCHITECTURE.md), and [back-end TODO](docs/TODO_BACKEND.md).
