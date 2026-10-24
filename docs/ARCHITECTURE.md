@@ -1,12 +1,12 @@
 # TechnicalHub architecture
 
-**Status:** Catalog contract, validation, and static build are implemented. Hosting is owned by another engineer.
+**Status:** Catalog contract, validation, static build, and GitHub Pages deployment are implemented.
 
 ## Purpose and scope
 
 TechnicalHub is a Korean-language directory that provides links to verified software projects. It does not provide project detail pages, public submissions, a runtime API, database, package registry, or dependency scanner. The initial catalog is intentionally empty because no project URLs have been supplied.
 
-The canonical repository is `https://github.com/hyangdan2/TechnicalHub`. The parent page `https://github.com/hyangdan2` and hosting configuration belong to another engineer and are outside this implementation.
+The canonical repository is `https://github.com/hyangdan2/TechnicalHub`. The owner authorized GitHub Pages hosting at `https://hyangdan2.github.io/TechnicalHub/`; the parent page `https://github.com/hyangdan2` remains maintained separately.
 
 Navigation connects TechnicalHub and Web-HQ in both directions: TechnicalHub's upper-right `Web-HQ` link targets `https://hyangdan2.github.io/`, and Web-HQ's hub directory links to `https://hyangdan2.github.io/TechnicalHub/`.
 
@@ -40,4 +40,4 @@ The static page renders catalog values as text and links directly to project rep
 
 ## Out of scope
 
-Deployment, hosted acceptance checks, CI, and the parent GitHub page are maintained by the hosting/release engineer. Do not add a server or external link checker without a separate implementation decision. See [the harness guide](HARNESS_GUIDE.md) and [back-end TODO](TODO_BACKEND.md).
+GitHub Pages deployment publishes the generated `dist/` directory through Actions. Hosted acceptance checks and the parent GitHub page remain follow-up work. Do not add a server or external link checker without a separate implementation decision. See [the harness guide](HARNESS_GUIDE.md) and [back-end TODO](TODO_BACKEND.md).

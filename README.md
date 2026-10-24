@@ -8,4 +8,4 @@ TechnicalHub is a Korean-language directory of verified software project links. 
 - `npm run build` — create the static site in `dist/`.
 - `npm run dev` — build and preview at `http://localhost:4174` by default (`PORT` can override it).
 
-Hosting and the parent GitHub page are maintained by another engineer. See [documentation](docs/README.md), [architecture](docs/ARCHITECTURE.md), and [back-end TODO](docs/TODO_BACKEND.md).
+Live site: [hyangdan2.github.io/TechnicalHub](https://hyangdan2.github.io/TechnicalHub/). The parent GitHub page remains maintained separately. See [documentation](docs/README.md), [architecture](docs/ARCHITECTURE.md), and [back-end TODO](docs/TODO_BACKEND.md).

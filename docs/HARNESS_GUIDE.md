@@ -16,4 +16,4 @@ Run `npm run validate` before `npm run build`. Review the diff for incorrect URL
 
 ## Ownership boundary
 
-The canonical repository is `https://github.com/hyangdan2/TechnicalHub`. Another engineer owns hosting, publishing, the parent page `https://github.com/hyangdan2`, CI, and hosted acceptance checks. Do not infer or configure a Pages URL or publishing workflow here.
+The canonical repository is `https://github.com/hyangdan2/TechnicalHub`. GitHub Pages publishes only `dist/` from the Actions workflow at `https://hyangdan2.github.io/TechnicalHub/`. The parent page `https://github.com/hyangdan2` and hosted acceptance checks remain separate follow-up work.

@@ -1,6 +1,6 @@
 # Back-end engineer TODO
 
-**Status:** initial catalog contract, deterministic validation, and static build implemented. Hosting remains owned by another engineer.
+**Status:** initial catalog contract, deterministic validation, static build, and GitHub Pages deployment implemented.
 
 ## Work items
 
@@ -22,7 +22,7 @@
 ## Boundaries
 
 - Do not add a database, API, server, or deployment workflow without an approved architecture change.
-- Hosting and the parent page `https://github.com/hyangdan2` are owned by another engineer. This repository is `https://github.com/hyangdan2/TechnicalHub`.
+- The parent page `https://github.com/hyangdan2` remains maintained separately. This repository is `https://github.com/hyangdan2/TechnicalHub`; its Pages site is `https://hyangdan2.github.io/TechnicalHub/`.
 - Keep external network checks separate from local deterministic verification.
 
 ## Commands
