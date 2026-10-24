@@ -7,6 +7,7 @@ This file records meaningful, dated changes to TechnicalHub documentation and pr
 - Updated technology profile detail pages to use an isolated light editorial style based on EDPilot0001, while preserving the dark TechnicalHub/Hub design on the home page.
 - Updated the architecture, harness, profile contract, documentation index, integrated TODO, and Front-end, Back-end, and Git administrator guides to describe the hub/detail style boundary and its validation requirements.
 - Kept the profile layout and CSS self-contained in TechnicalHub; no EDPilot0001 code, scripts, content, or assets are reused.
+- Made the full project card a single link so clicking its title, summary, tags, date, or card background opens the destination; kept the arrow as a visual cue.
 
 ## 2026-10-24
 

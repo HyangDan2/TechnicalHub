@@ -4,7 +4,7 @@
 
 | ID | Priority | Task and output | Depends on | Acceptance criteria | Status |
 | --- | --- | --- | --- | --- | --- |
-| FE-01 | P0 | Add the Face Landmark Tracker home profile card with an internal profile link. | BE-01 profile route/metadata contract | Card displays the approved title, summary, categories, and update date; it links to the same-site profile and has no private repository link. | Build and local route verified |
+| FE-01 | P0 | Add the Face Landmark Tracker home profile card with an internal profile link. | BE-01 profile route/metadata contract | The entire card is one accessible link to the same-site profile; title, summary, categories, and update date are visible, with no private repository link. | Implemented; build and local browser check pending |
 | FE-02 | P0 | Create the shared Face Landmark Tracker detail-page layout and public profile using the EDPilot0001 editorial style. | BE-01; BE-02 generated route | Page has English content, warm ivory background, green/teal palette, monospaced labels, article, technology roles, approved diagram and demonstration image, update date, and a clear return-to-hub link. Profile styling is isolated from Hub styles. | Implemented locally; visual verification pending |
 | FE-03 | P0 | Adapt category/search behavior and empty states to the profile-card model. | FE-01; BE-01 | Existing search and filters continue to work; cards route internally; drafts are not shown; empty and no-results states remain distinct. | Planned |
 | FE-04 | P1 | Add accessible content and responsive detail-page behavior. | FE-02 | Semantic headings, keyboard navigation, visible focus, useful diagram alternatives, 360/390/768/1440px layout checks, text expansion, and reduced motion are verified. | Planned |

@@ -37,27 +37,32 @@ function renderProjects() {
   list.replaceChildren();
   for (const project of visible) {
     const item = document.createElement('li');
-    item.className = 'project-card';
+    item.className = 'project-card-item';
     const link = document.createElement('a');
-    link.className = 'project-link';
+    link.className = 'project-card project-link';
     link.href = project.profileUrl || project.repositoryUrl;
     if (!project.profileUrl) {
       link.target = '_blank';
       link.rel = 'noopener noreferrer';
     }
-    link.textContent = project.name;
+    const title = document.createElement('span');
+    title.className = 'project-title';
+    title.textContent = project.name;
     const arrow = document.createElement('span');
+    arrow.className = 'project-arrow';
     arrow.setAttribute('aria-hidden', 'true');
     arrow.textContent = project.profileUrl ? '→' : '↗';
-    link.append(arrow);
-    item.append(link);
+    const titleRow = document.createElement('span');
+    titleRow.className = 'project-title-row';
+    titleRow.append(title, arrow);
+    link.append(titleRow);
     if (project.summary) {
-      const summary = document.createElement('p');
+      const summary = document.createElement('span');
       summary.className = 'project-summary';
       summary.textContent = project.summary;
-      item.append(summary);
+      link.append(summary);
     }
-    const tags = document.createElement('div');
+    const tags = document.createElement('span');
     tags.className = 'card-meta';
     for (const category of project.categories) {
       const tag = document.createElement('span');
@@ -65,10 +70,11 @@ function renderProjects() {
       tag.textContent = category;
       tags.append(tag);
     }
-    const date = document.createElement('p');
+    const date = document.createElement('span');
     date.className = 'inspected-date';
     date.textContent = `${project.updatedAt ? '소개 갱신일' : '조사일'} ${project.updatedAt || project.inspectedAt}`;
-    item.append(tags, date);
+    link.append(tags, date);
+    item.append(link);
     list.append(item);
   }
   count.textContent = `${visible.length}개`;
