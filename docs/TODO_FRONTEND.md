@@ -1,30 +1,19 @@
 # Front-end engineer TODO
 
-**Status:** first pass aligned to the parent GameHub visual system; mobile and interaction acceptance checks remain.
-
-Product decisions are recorded in [Architecture](ARCHITECTURE.md): Korean UI, empty initial catalog, categories `HW`, `SW`, `AI`, `Data`, `ML`, `DL`, `Utility`, `Etc`, confirmed information only, direct project repository links, and inspection date only.
-
-## Work items
+**Scope:** add profile detail pages to TechnicalHub while preserving the existing Hub design on the home page. Technology profile details use the EDPilot0001 editorial visual reference, isolated from the home-page stylesheet. The home page, category filters, search, and static catalog rendering are implemented.
 
 | ID | Priority | Task and output | Depends on | Acceptance criteria | Status |
 | --- | --- | --- | --- | --- | --- |
-| FE-01 | P0 | Define page structure and interaction states. | Product decisions in `ARCHITECTURE.md` | Search, category filters, project results, loading, empty, and error states are defined; project links open repositories directly. | Complete |
-| FE-02 | P0 | Implement semantic page shell, responsive layout, and shared styles aligned with parent GameHub. | FE-01; source tree | Korean landmarks and heading order; narrow and wide layouts; visible focus; reduced-motion support; matching dark/lime palette, typography, shell width, hero and collection rhythm, controls, and footer. | Implemented; desktop visual reviewed; mobile review pending |
-| FE-03 | P0 | Load and safely render project links from the catalog. | Catalog contract in `data/catalog.json` | Project names are text; links are HTTPS from validated catalog; loading, empty, and failure states are presented. | Implemented; empty state visually confirmed |
-| FE-04 | P0 | Implement project search and category filters. | Catalog category vocabulary | Search and category combine; result count, selected state, and reset work; no-result state is clear. | Implemented; interaction acceptance pending |
-| FE-05 | P1 | Implement project detail/evidence presentation. | Product decision | Not in first release: only direct project links, categories, and inspection date are displayed. | Dropped by product decision |
-| FE-06 | P1 | Check keyboard, viewport, text expansion, and browser behavior. | FE-02–FE-04 | Browser checks cover keyboard/focus, representative widths, long labels, reduced motion, filters, and load failure. | Planned |
-| FE-07 | P1 | Review production build visually and fix UI defects against GameHub. | FE-02–FE-06; production artifact | Review desktop and mobile screenshots; record browser and viewport; fix observed defects. | Desktop reviewed in in-app browser at 1280px; mobile and interaction review pending |
-| FE-08 | P1 | Connect TechnicalHub and Web-HQ in both directions. | Web-HQ source and TechnicalHub Pages deployment | TechnicalHub's upper-right link opens Web-HQ; Web-HQ lists TechnicalHub; verify both directions on deployed URLs. | Source links implemented; TechnicalHub is live at `https://hyangdan2.github.io/TechnicalHub/`; verify the parent-page link separately |
+| FE-01 | P0 | Add the Face Landmark Tracker home profile card with an internal profile link. | BE-01 profile route/metadata contract | Card displays the approved title, summary, categories, and update date; it links to the same-site profile and has no private repository link. | Build and local route verified |
+| FE-02 | P0 | Create the shared Face Landmark Tracker detail-page layout and public profile using the EDPilot0001 editorial style. | BE-01; BE-02 generated route | Page has English content, warm ivory background, green/teal palette, monospaced labels, article, technology roles, approved diagram and demonstration image, update date, and a clear return-to-hub link. Profile styling is isolated from Hub styles. | Implemented locally; visual verification pending |
+| FE-03 | P0 | Adapt category/search behavior and empty states to the profile-card model. | FE-01; BE-01 | Existing search and filters continue to work; cards route internally; drafts are not shown; empty and no-results states remain distinct. | Planned |
+| FE-04 | P1 | Add accessible content and responsive detail-page behavior. | FE-02 | Semantic headings, keyboard navigation, visible focus, useful diagram alternatives, 360/390/768/1440px layout checks, text expansion, and reduced motion are verified. | Planned |
+| FE-05 | P1 | Review generated production pages and relative paths. | BE-03; GIT-03 | Home keeps the dark Hub style; profile uses EDPilot0001's light editorial style; both work under /TechnicalHub/ with correct CSS, images, and navigation at desktop/mobile widths. | Local build and image paths verified; refreshed visual review and hosted route pending |
 
 ## Boundaries
 
-- Keep project records in the catalog; do not hardcode project cards or call external APIs at runtime.
-- Display no detail or evidence page in the first release.
-- TechnicalHub deploys through GitHub Pages; the parent Web-HQ page is maintained separately.
-- Web-HQ is `https://hyangdan2.github.io/`; its hub directory should link to TechnicalHub, and TechnicalHub should provide a same-tab Web-HQ return link.
-- Treat the parent GameHub source at `../GameHub` as the visual reference; preserve its dark background, lime accent, typography, content width, header/hero/collection hierarchy, card borders, responsive behavior, and reduced-motion conventions while adapting arcade-specific content to project discovery.
-
-## Handoff
-
-Front-end handoff requires FE-02 through FE-06 acceptance checks and a record of remaining limitations. FE-07 is required before release sign-off.
+- Keep the private source repository URL out of rendered HTML, generated data, metadata, and outbound links.
+- Use only public copy and assets reviewed by the maintainer.
+- Do not duplicate article content in JavaScript or the home-page card.
+- Preserve the Hub style on the landing page and the EDPilot0001 editorial style on profile detail pages. Keep the two style systems isolated.
+- Preserve existing TechnicalHub/Web-HQ navigation. EDPilot0001 is a visual reference only; do not reuse its source code, copy, scripts, or assets.

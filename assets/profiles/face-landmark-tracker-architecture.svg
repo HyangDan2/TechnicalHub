@@ -1,0 +1,175 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1080" viewBox="0 0 1800 1080" role="img" aria-labelledby="title desc">
+  <title id="title">Face Landmark Tracker runtime component diagram</title>
+  <desc id="desc">UML component view. Camera and mock video inputs feed Video Source, which provides frames to Video Processor. Processing includes optional ISP, face landmark tracking, head pose estimation, drowsiness evaluation, and overlay rendering. A desktop interface reads and updates local settings.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#53635A" /></marker>
+    <marker id="arrowSoft" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#82978A" /></marker>
+    <style>
+      text { font-family: Arial, Helvetica, sans-serif; fill: #1c2a22; }
+      .title { font-size: 30px; font-weight: 700; letter-spacing: 1.2px; }
+      .subtitle { font-size: 16px; fill: #617066; }
+      .zone { fill: #eaf0e8; stroke: #93a69a; stroke-width: 2; }
+      .zoneTitle { font-size: 19px; font-weight: 700; letter-spacing: 1px; fill: #2e4738; }
+      .component { fill: #fff; stroke: #536b5d; stroke-width: 2; }
+      .componentTitle { font-size: 17px; font-weight: 700; text-anchor: middle; }
+      .componentSub { font-size: 14px; fill: #617066; text-anchor: middle; }
+      .label { font-size: 13px; fill: #53635a; text-anchor: middle; }
+      .flow { stroke: #53635a; stroke-width: 2.5; }
+      .flowEnd { stroke: #53635a; stroke-width: 2.5; marker-end: url(#arrow); }
+      .config { stroke: #82978a; stroke-width: 2; stroke-dasharray: 7 6; }
+      .configEnd { stroke: #82978a; stroke-width: 2; stroke-dasharray: 7 6; marker-end: url(#arrowSoft); }
+      .settings { fill: #f7faf5; stroke: #7c9183; stroke-width: 2; }
+      .settingsText { font-size: 16px; font-weight: 700; text-anchor: middle; }
+      .legend { font-size: 13px; fill: #617066; }
+    </style>
+  </defs>
+
+  <rect width="1800" height="1080" fill="#f6f8f4" />
+  <text x="64" y="68" class="title">FACE LANDMARK TRACKER</text>
+  <text x="64" y="100" class="subtitle">Runtime architecture · UML component view · conceptual, public overview</text>
+
+  <!-- Component boundaries -->
+  <rect x="60" y="170" width="370" height="770" rx="16" class="zone" />
+  <text x="90" y="210" class="zoneTitle">VIDEO SOURCE</text>
+  <rect x="470" y="170" width="880" height="770" rx="16" class="zone" />
+  <text x="500" y="210" class="zoneTitle">VIDEO PROCESSOR</text>
+
+  <!-- Video Source components -->
+  <g>
+    <rect x="90" y="290" width="150" height="90" rx="10" class="component" />
+    <path d="M102 290 h30 v14 h-30 z" fill="#536b5d" />
+    <text x="165" y="330" class="componentTitle">Camera Input</text>
+    <text x="165" y="354" class="componentSub">Live frames</text>
+  </g>
+  <g>
+    <rect x="260" y="290" width="150" height="90" rx="10" class="component" />
+    <path d="M272 290 h30 v14 h-30 z" fill="#536b5d" />
+    <text x="335" y="330" class="componentTitle">Mock Video</text>
+    <text x="335" y="354" class="componentSub">Demonstration frames</text>
+  </g>
+  <g>
+    <rect x="135" y="540" width="235" height="105" rx="10" class="component" />
+    <path d="M147 540 h30 v14 h-30 z" fill="#536b5d" />
+    <text x="252" y="583" class="componentTitle">Source Selection</text>
+    <text x="252" y="607" class="componentTitle">and Fallback</text>
+    <text x="252" y="630" class="componentSub">One active frame stream</text>
+  </g>
+
+  <!-- Video Processor components -->
+  <g>
+    <rect x="520" y="285" width="230" height="100" rx="10" class="component" />
+    <path d="M532 285 h30 v14 h-30 z" fill="#536b5d" />
+    <text x="635" y="329" class="componentTitle">Frame Preparation</text>
+    <text x="635" y="356" class="componentSub">Input format normalization</text>
+  </g>
+  <g>
+    <rect x="850" y="230" width="250" height="120" rx="10" class="component" />
+    <path d="M862 230 h30 v14 h-30 z" fill="#536b5d" />
+    <text x="975" y="275" class="componentTitle">Optional ISP</text>
+    <text x="975" y="302" class="componentSub">CLAHE · Blur · Unsharp</text>
+    <text x="975" y="327" class="componentSub">When enabled and applicable</text>
+  </g>
+  <g>
+    <rect x="850" y="440" width="250" height="100" rx="10" class="component" />
+    <path d="M862 440 h30 v14 h-30 z" fill="#536b5d" />
+    <text x="975" y="484" class="componentTitle">Face Landmark Tracking</text>
+    <text x="975" y="511" class="componentSub">MediaPipe</text>
+  </g>
+  <g>
+    <rect x="540" y="680" width="230" height="100" rx="10" class="component" />
+    <path d="M552 680 h30 v14 h-30 z" fill="#536b5d" />
+    <text x="655" y="724" class="componentTitle">Head Pose Estimation</text>
+    <text x="655" y="751" class="componentSub">Landmark-derived pose</text>
+  </g>
+  <g>
+    <rect x="850" y="680" width="250" height="100" rx="10" class="component" />
+    <path d="M862 680 h30 v14 h-30 z" fill="#536b5d" />
+    <text x="975" y="724" class="componentTitle">Drowsiness Evaluation</text>
+    <text x="975" y="751" class="componentSub">Eye closure duration</text>
+  </g>
+  <g>
+    <rect x="1150" y="500" width="160" height="100" rx="10" class="component" />
+    <path d="M1162 500 h30 v14 h-30 z" fill="#536b5d" />
+    <text x="1230" y="544" class="componentTitle">Overlay</text>
+    <text x="1230" y="571" class="componentSub">OpenCV rendering</text>
+  </g>
+
+  <!-- UI and settings components -->
+  <g>
+    <rect x="1400" y="420" width="320" height="150" rx="12" class="component" />
+    <path d="M1412 420 h30 v14 h-30 z" fill="#536b5d" />
+    <text x="1560" y="474" class="componentTitle">Desktop User Interface</text>
+    <text x="1560" y="504" class="componentSub">PySide6</text>
+    <text x="1560" y="531" class="componentSub">Display and controls</text>
+  </g>
+  <g>
+    <path d="M1420 680 h250 l28 28 v102 h-278 z" class="settings" />
+    <path d="M1670 680 v28 h28" fill="none" stroke="#7c9183" stroke-width="2" />
+    <text x="1559" y="735" class="settingsText">Local Settings</text>
+    <text x="1559" y="763" class="componentSub">Source · ISP · tracking</text>
+  </g>
+
+  <!-- Frame inputs: routes stay in the open channel beneath the input boxes -->
+  <line x1="165" y1="380" x2="165" y2="455" class="flow" />
+  <line x1="165" y1="455" x2="205" y2="455" class="flow" />
+  <line x1="205" y1="455" x2="205" y2="540" class="flowEnd" />
+  <text x="178" y="435" class="label">live</text>
+  <line x1="335" y1="380" x2="335" y2="455" class="flow" />
+  <line x1="335" y1="455" x2="300" y2="455" class="flow" />
+  <line x1="300" y1="455" x2="300" y2="540" class="flowEnd" />
+  <text x="320" y="435" class="label">mock</text>
+
+  <!-- Routed frame and analysis flows; turns occur only in whitespace -->
+  <line x1="370" y1="592" x2="440" y2="592" class="flow" />
+  <line x1="440" y1="592" x2="440" y2="335" class="flow" />
+  <line x1="440" y1="335" x2="520" y2="335" class="flowEnd" />
+  <text x="476" y="319" class="label">video frames</text>
+  <line x1="750" y1="315" x2="800" y2="315" class="flow" />
+  <line x1="800" y1="315" x2="800" y2="290" class="flow" />
+  <line x1="800" y1="290" x2="850" y2="290" class="flowEnd" />
+  <text x="800" y="276" class="label">ISP enabled</text>
+  <line x1="750" y1="355" x2="815" y2="355" class="flow" />
+  <line x1="815" y1="355" x2="815" y2="490" class="flow" />
+  <line x1="815" y1="490" x2="850" y2="490" class="flowEnd" />
+  <text x="815" y="423" class="label">ISP disabled</text>
+  <line x1="975" y1="350" x2="975" y2="440" class="flowEnd" />
+  <text x="1027" y="402" class="label">enhanced frame</text>
+  <line x1="915" y1="540" x2="915" y2="620" class="flow" />
+  <line x1="915" y1="620" x2="655" y2="620" class="flow" />
+  <line x1="655" y1="620" x2="655" y2="680" class="flowEnd" />
+  <line x1="1035" y1="540" x2="1035" y2="680" class="flowEnd" />
+  <text x="1080" y="620" class="label">landmarks</text>
+  <line x1="655" y1="780" x2="655" y2="835" class="flow" />
+  <line x1="655" y1="835" x2="1135" y2="835" class="flow" />
+  <line x1="1135" y1="835" x2="1135" y2="550" class="flow" />
+  <line x1="1135" y1="550" x2="1150" y2="550" class="flowEnd" />
+  <text x="815" y="823" class="label">pose data</text>
+  <line x1="1100" y1="730" x2="1125" y2="730" class="flow" />
+  <line x1="1125" y1="730" x2="1125" y2="575" class="flow" />
+  <line x1="1125" y1="575" x2="1150" y2="575" class="flowEnd" />
+  <text x="1170" y="710" class="label">warning state</text>
+  <line x1="1310" y1="550" x2="1370" y2="550" class="flow" />
+  <line x1="1370" y1="550" x2="1370" y2="495" class="flow" />
+  <line x1="1370" y1="495" x2="1400" y2="495" class="flowEnd" />
+  <text x="1365" y="477" class="label">frame + status</text>
+
+  <!-- Configuration flows route outside component boxes -->
+  <line x1="1560" y1="570" x2="1560" y2="680" class="configEnd" />
+  <line x1="1420" y1="710" x2="1375" y2="710" class="config" />
+  <line x1="1375" y1="710" x2="1375" y2="290" class="config" />
+  <line x1="1375" y1="290" x2="1100" y2="290" class="configEnd" />
+  <text x="1236" y="275" class="label">ISP options</text>
+  <line x1="1420" y1="744" x2="1360" y2="744" class="config" />
+  <line x1="1360" y1="744" x2="1360" y2="490" class="config" />
+  <line x1="1360" y1="490" x2="1100" y2="490" class="configEnd" />
+  <text x="1230" y="475" class="label">tracking options</text>
+  <line x1="1559" y1="810" x2="1559" y2="870" class="config" />
+  <line x1="1559" y1="870" x2="252" y2="870" class="config" />
+  <line x1="252" y1="870" x2="252" y2="645" class="configEnd" />
+  <text x="900" y="856" class="label">source selection</text>
+
+  <line x1="64" y1="990" x2="1736" y2="990" stroke="#d7dfd7" stroke-width="2" />
+  <text x="64" y="1030" class="legend">Solid arrows: frame, analysis, or UI flow</text>
+  <text x="550" y="1030" class="legend">Dashed arrows: local configuration flow</text>
+  <text x="1736" y="1030" class="legend" text-anchor="end">Public overview · implementation source is private</text>
+</svg>

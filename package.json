@@ -5,7 +5,11 @@
   "type": "module",
   "scripts": {
     "validate": "node scripts/validate.mjs",
-    "build": "node scripts/build.mjs",
+    "build": "npm run validate && node scripts/clean.mjs && eleventy",
     "dev": "npm run build && node scripts/dev.mjs"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "3.1.7",
+    "gray-matter": "npm:@11ty/gray-matter@^1.0.0"
   }
 }

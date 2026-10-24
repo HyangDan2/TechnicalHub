@@ -30,7 +30,8 @@ function renderProjects() {
   const query = search.value.trim().toLocaleLowerCase('ko');
   const visible = projects.filter(project => {
     const matchesCategory = !activeCategory || project.categories.includes(activeCategory);
-    const matchesQuery = !query || project.name.toLocaleLowerCase('ko').includes(query);
+    const searchableText = `${project.name} ${project.summary || ''}`.toLocaleLowerCase('ko');
+    const matchesQuery = !query || searchableText.includes(query);
     return matchesCategory && matchesQuery;
   });
   list.replaceChildren();
@@ -39,14 +40,23 @@ function renderProjects() {
     item.className = 'project-card';
     const link = document.createElement('a');
     link.className = 'project-link';
-    link.href = project.repositoryUrl;
-    link.target = '_blank';
-    link.rel = 'noopener noreferrer';
+    link.href = project.profileUrl || project.repositoryUrl;
+    if (!project.profileUrl) {
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+    }
     link.textContent = project.name;
     const arrow = document.createElement('span');
     arrow.setAttribute('aria-hidden', 'true');
-    arrow.textContent = '↗';
+    arrow.textContent = project.profileUrl ? '→' : '↗';
     link.append(arrow);
+    item.append(link);
+    if (project.summary) {
+      const summary = document.createElement('p');
+      summary.className = 'project-summary';
+      summary.textContent = project.summary;
+      item.append(summary);
+    }
     const tags = document.createElement('div');
     tags.className = 'card-meta';
     for (const category of project.categories) {
@@ -57,8 +67,8 @@ function renderProjects() {
     }
     const date = document.createElement('p');
     date.className = 'inspected-date';
-    date.textContent = `조사일 ${project.inspectedAt}`;
-    item.append(link, tags, date);
+    date.textContent = `${project.updatedAt ? '소개 갱신일' : '조사일'} ${project.updatedAt || project.inspectedAt}`;
+    item.append(tags, date);
     list.append(item);
   }
   count.textContent = `${visible.length}개`;

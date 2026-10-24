@@ -1,0 +1,19 @@
+---
+permalink: data/catalog.json
+eleventyExcludeFromCollections: true
+---
+{
+  "schemaVersion": 1,
+  "projects": [
+    {% for profile in collections.publishedProfiles %}
+    {
+      "id": {{ profile.data.id | json | safe }},
+      "name": {{ profile.data.title | json | safe }},
+      "summary": {{ profile.data.summary | json | safe }},
+      "profileUrl": {{ ("./technologies/" ~ profile.data.slug ~ "/") | json | safe }},
+      "categories": {{ profile.data.categories | json | safe }},
+      "updatedAt": {{ profile.data.updatedAt | json | safe }}
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ]
+}

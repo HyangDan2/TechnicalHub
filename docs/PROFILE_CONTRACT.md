@@ -1,0 +1,11 @@
+# Public project profile contract
+
+A profile is a Markdown file under `content/profiles/`. Its front matter is the source for the hub card and profile route; its Markdown body is the article. The hub card displays the title, short summary, categories, and update date, and links to the generated profile. The route is `/TechnicalHub/technologies/<slug>/` on GitHub Pages and `/technologies/<slug>/` relative to the site root locally. Stable `id` and `slug` use lowercase kebab-case and are unique.
+
+The hub card follows the TechnicalHub/Hub home-page design. The profile detail route follows the EDPilot0001 editorial visual reference using TechnicalHub's own profile layout and stylesheet. This visual choice does not change profile data or route semantics and does not authorize copying code, content, scripts, or media from the reference project.
+
+Required front matter fields are `id`, `slug`, `title`, `summary`, `categories`, `status`, `updatedAt`, `technologies`, and `references`. Categories use the approved values `HW`, `SW`, `AI`, `Data`, `ML`, `DL`, `Utility`, and `Etc`. Status is `draft`, `published`, or `unavailable`. `updatedAt` uses `YYYY-MM-DD`. Each technology has a name and its project role; version is optional and is included only when approved and supported. References are optional public HTTPS links represented by an empty array when absent.
+
+Only reviewed information may be published. The profile does not require a source repository URL. Never include private repository URLs in front matter, article text, generated data, metadata, assets, or workflow logs. A profile's article body must contain meaningful public content before publication. Draft and unavailable profiles do not generate public routes or home cards.
+
+Machine-readable front matter shape: `schema/profile-frontmatter.schema.json`. The local validator checks required fields, IDs/slugs, dates, categories, technology roles, HTTPS references, non-empty published bodies, and placeholder text. Eleventy generates pages and hub cards only for published profiles. Manual review is still required to confirm every public claim and asset is approved; the validator cannot determine whether a technical claim is true or safe to disclose.

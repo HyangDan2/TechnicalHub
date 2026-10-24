@@ -1,27 +1,20 @@
 # Git administrator TODO
 
-**Status:** repository initialized and GitHub Pages deployment is live. CI/review conventions and hosted acceptance checks remain. Each item has one accountable owner: Git administrator.
-
-## Work items
+**Current state:** repository hyangdan2/TechnicalHub is deployed to GitHub Pages at https://hyangdan2.github.io/TechnicalHub/. The Pages workflow currently builds and deploys dist from main.
 
 | ID | Priority | Task and output | Depends on | Acceptance criteria | Status |
 | --- | --- | --- | --- | --- | --- |
-| GIT-01 | P0 | Confirm repository identity and initialize/organize the agreed source tree, ignore rules, and entry-point instructions. | Owner confirms canonical repository | Repository identity is recorded; generated outputs and local dependencies are ignored; docs and root instructions point to current guides and commands. | Done; `main` initialized and pushed; root README and ignore rules committed. |
-| GIT-02 | P0 | Define branch, pull-request, review, and merge conventions; add CI for deterministic verification. | GIT-01; BE-02 and BE-04 command interfaces | Proposed changes trigger the documented checks; pull requests do not deploy; CI uses the committed lockfile and least required permissions. | Planned |
-| GIT-03 | P1 | Confirm static host and configure protected deployment workflow. | Hosting and public URL confirmed; BE-05 | Only successful builds publish; only `dist/` is uploaded; credentials are not embedded; overlapping releases are controlled; hosted URL is verified. | Done; Pages uses the Actions workflow, which validates and builds before uploading only `dist/`; deploy run succeeded and the hosted URL was verified. |
-| GIT-04 | P1 | Define release evidence, rollback, and incident notes in operations documentation. | GIT-03 | Procedure names the release revision, verification evidence, failure phase, rollback path, and hosted recheck. | Planned |
-| GIT-05 | P1 | Integrate front-end browser checks and hosted acceptance into the appropriate workflow. | FE-06; BE-07; host decision | Browser tests run against the production build; hosted checks run only when configured and do not convert network failures into local test failures. | Planned |
-| GIT-06 | P2 | Review dependency/runtime maintenance and CI action versions at implementation time. | GIT-01; CI established | Runtime/dependencies are pinned or locked according to the chosen tooling; upgrades are reviewed and the harness guide is updated with actual commands. | Planned |
+| GIT-01 | P0 | Add pull-request validation/build CI without deployment. | BE-02 command interface | PR workflow runs lockfile install, validation, and production build; PR runs have no Pages deploy permissions. | Planned |
+| GIT-02 | P0 | Pin and lock the Eleventy toolchain and align local/CI Node versions. | BE-02 package manifest | Lockfile records dependencies; clean install and build work locally and in CI; no private-source credential is configured. | Planned |
+| GIT-03 | P0 | Verify nested-route deployment and hosted acceptance for home and Face Landmark Tracker pages. | BE-02–BE-04; FE-02; GIT-01 | Only dist is deployed; /TechnicalHub/ and /TechnicalHub/technologies/face-landmark-tracker/ work with assets and navigation. | Pending; latest profile edits are local |
+| GIT-04 | P1 | Document release evidence and rollback. | GIT-01–GIT-03 | Docs identify revision, verification evidence, failure diagnosis, revert procedure, and post-rollback hosted check. | Planned |
+| GIT-05 | P1 | Review Actions permissions, action versions, and deployment protection. | Existing Pages workflow | Build is read-only; deploy permissions are scoped to Pages/OIDC; only the approved branch deploys; action versions are reviewed. | Planned |
+| GIT-06 | P1 | Verify style assets in the built Pages artifact. | FE-02; BE-02 | Generated home page references the Hub stylesheet; nested profile route references the profile-only stylesheet; both stylesheets and profile media resolve under `/TechnicalHub/`. | Pending refreshed build review |
 
-## Git administrator boundaries
+## Boundaries
 
-- Do not assume GameHub's repository name, Pages URL, branch, or deployment permissions apply to TechnicalHub.
-- Publish only after the owner confirms the canonical repository, host, URL, and release workflow. The owner authorized GitHub Pages for this repository at `https://hyangdan2.github.io/TechnicalHub/`.
-- Do not add secrets or personal access tokens to the repository.
-- Keep CI checks read-only where possible and scope deploy permissions to the deployment job.
-- Keep generated artifacts out of source control unless the chosen host specifically requires otherwise.
-
-## Handoff
-
-Engineering can work against the repository after GIT-01. Release readiness requires GIT-02, the production build and browser checks, and GIT-03 through GIT-05. Never report a deployment as complete based on CI artifact creation alone.
-
+- Do not grant the public TechnicalHub workflow access to the private Face Landmark Tracker repository.
+- Do not add a personal access token or other private-source credential.
+- Do not publish drafts or files outside the generated dist artifact.
+- GitHub Pages is public; repository visibility does not make the published page private. Keep the artifact limited to reviewed public content.
+- Do not copy EDPilot0001 source files into the artifact. The profile stylesheet is implemented within TechnicalHub; only its visual direction is referenced.

@@ -1,0 +1,65 @@
+@startuml FaceLandmarkTrackerComponents
+title Face Landmark Tracker — Runtime Component View
+left to right direction
+skinparam linetype ortho
+skinparam backgroundColor #F6F8F4
+skinparam componentStyle uml2
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam ArrowColor #53635A
+skinparam ArrowThickness 1.5
+skinparam package {
+  BackgroundColor #EAF0E8
+  BorderColor #93A69A
+  FontColor #1F3028
+}
+skinparam component {
+  BackgroundColor #FFFFFF
+  BorderColor #536B5D
+  FontColor #1C2A22
+}
+skinparam database {
+  BackgroundColor #F7FAF5
+  BorderColor #7C9183
+  FontColor #1C2A22
+}
+
+package "Video Source" {
+  component "Camera Input" as Camera
+  component "Mock Video Input" as Mock
+  component "Source Selection\nand Fallback" as SourceFallback
+  Camera -[hidden]right- Mock
+  Camera -down-> SourceFallback : live frames
+  Mock -down-> SourceFallback : demonstration frames
+}
+
+package "Video Processor" {
+  component "Frame Preparation" as Prep
+  component "Optional ISP\n(CLAHE / Blur / Unsharp)" as ISP
+  component "Face Landmark Tracking\n(MediaPipe)" as Tracker
+  component "Head Pose Estimation" as Pose
+  component "Drowsiness Evaluation\n(eye closure duration)" as DMS
+  component "Overlay Rendering\n(OpenCV)" as Overlay
+
+  Prep -right-> ISP : ISP enabled
+  Prep -down-> Tracker : ISP disabled
+  ISP -down-> Tracker : enhanced frame
+  Tracker -down-> Pose : landmarks
+  Tracker -down-> DMS : landmarks
+  Pose -right-> Overlay : pose data
+  DMS -right-> Overlay : warning state
+}
+
+component "Desktop User Interface\n(PySide6)" as UI
+database "Local Settings" as Settings
+
+SourceFallback -right-> Prep : video frames
+Overlay -right-> UI : annotated frame
+UI -down-> Settings : read / update options
+Settings ..> SourceFallback : source choice
+Settings ..> ISP : ISP options
+Settings ..> Tracker : tracking on / off
+Settings ..> DMS : mode selection
+@enduml

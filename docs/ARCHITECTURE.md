@@ -1,43 +1,71 @@
 # TechnicalHub architecture
 
-**Status:** Catalog contract, validation, static build, and GitHub Pages deployment are implemented.
+**Current state:** deployed static directory with a local Markdown/Eleventy profile pipeline. The Face Landmark Tracker card and profile are built locally; these latest profile edits have not been deployed to Pages.
 
-## Purpose and scope
+## Purpose
 
-TechnicalHub is a Korean-language directory that provides links to verified software projects. It does not provide project detail pages, public submissions, a runtime API, database, package registry, or dependency scanner. The initial catalog is intentionally empty because no project URLs have been supplied.
+TechnicalHub is a directory of software projects and their technologies. The home page supports category filters and name search. Public technical introductions use generated internal profile routes. Face Landmark Tracker is the first profile; its implementation source remains private.
 
-The canonical repository is `https://github.com/hyangdan2/TechnicalHub`. The owner authorized GitHub Pages hosting at `https://hyangdan2.github.io/TechnicalHub/`; the parent page `https://github.com/hyangdan2` remains maintained separately.
+Canonical repository: https://github.com/hyangdan2/TechnicalHub
+Public site: https://hyangdan2.github.io/TechnicalHub/
+The parent Web-HQ page is maintained separately.
 
-Navigation connects TechnicalHub and Web-HQ in both directions: TechnicalHub's upper-right `Web-HQ` link targets `https://hyangdan2.github.io/`, and Web-HQ's hub directory links to `https://hyangdan2.github.io/TechnicalHub/`.
+## Visual architecture
 
-## Data contract
+TechnicalHub has two intentionally different visual contexts. The hub landing page uses the existing dark TechnicalHub/Hub design system for project discovery, filters, and search. Technology profile detail pages use the light editorial visual language of the neighboring EDPilot0001 site: warm ivory background, deep green text, teal accents, restrained borders, and monospaced section labels. This is a visual reference only; profile pages remain part of TechnicalHub and do not import EDPilot0001 source code, scripts, content, or assets.
 
-`data/catalog.json` is the source of truth. Its root has `schemaVersion: 1` and a `projects` array. Each project has a stable kebab-case `id`, display `name`, HTTPS `repositoryUrl`, one or more `categories`, and the `inspectedAt` date (`YYYY-MM-DD`). Only verified information belongs in the catalog. The approved categories are `HW`, `SW`, `AI`, `Data`, `ML`, `DL`, `Utility`, and `Etc`.
+Keep the distinction isolated in the profile layout and `css/profile.css`. Do not load the hub stylesheet on profile routes or change the hub stylesheet to achieve profile-specific styling. Verify both a hub page and a profile route whenever shared templates or CSS are changed.
 
-Example record (illustrative only):
+## Target architecture
 
-```json
-{
-  "id": "example-project",
-  "name": "Example Project",
-  "repositoryUrl": "https://github.com/OWNER/REPOSITORY",
-  "categories": ["SW"],
-  "inspectedAt": "YYYY-MM-DD"
-}
-```
+Keep the site static. One Markdown profile is the editable source for both its home card and detail page. Eleventy generates static HTML and any local listing/search data at build time. Neither visitors' browsers nor the public build workflow need to query GitHub or access a private repository.
 
-IDs and normalized repository URLs must be unique. Repository URLs cannot contain credentials, query strings, or fragments. No project records are shipped until real URLs are provided and inspected.
+    Maintainer approves public claims and assets
+                         |
+                         v
+    content/profiles/face-landmark-tracker.md
+               /                    \
+       shared home template       profile template
+               \                    /
+                Eleventy build -> dist/
+                              |
+                              v
+                 GitHub Pages public site
 
-## Components and commands
+Profile route: /TechnicalHub/technologies/face-landmark-tracker/.
 
-- `schema/catalog.schema.json`: machine-readable record shape.
-- `scripts/catalog.mjs`: deterministic validation helpers.
-- `scripts/validate.mjs`: `npm run validate` entry point.
-- `scripts/build.mjs`: `npm run build`; validates first, recreates `dist/`, writes the Korean link page and public catalog.
-- `scripts/dev.mjs`: `npm run dev`; serves the built site at `http://localhost:4174` by default (`PORT` can override it).
+## Content contract
 
-The static page renders catalog values as text and links directly to project repositories. There are no runtime network requests except loading the local catalog. The build contains no evidence notes, drafts, or project execution.
+Use Markdown front matter for fields needed by the hub and detail template:
 
-## Out of scope
+- Stable ID and slug.
+- Title, short summary, approved categories, status (draft, published, unavailable), and updated date.
+- Technology names and their roles in the project. Include versions only when approved and supported.
+- Optional public source/reference URLs.
+- Markdown body for the public article.
 
-GitHub Pages deployment publishes the generated `dist/` directory through Actions. Hosted acceptance checks and the parent GitHub page remain follow-up work. Do not add a server or external link checker without a separate implementation decision. See [the harness guide](HARNESS_GUIDE.md) and [back-end TODO](TODO_BACKEND.md).
+The private source URL is not required. For Face Landmark Tracker, omit it from content, generated HTML, JSON, page metadata, and workflow logs. The profile may state that the implementation source is private. Keep the current category vocabulary (HW, SW, AI, Data, ML, DL, Utility, Etc.) unless an explicit taxonomy change is approved.
+
+Markdown profiles are the editable source of truth. Generated HTML, listing/search data, and dist are build outputs and must not be manually edited. Draft profiles must not generate public pages or cards.
+
+## Privacy and publication boundary
+
+GitHub Pages content is public even if the source repository for the site is private. Publish only reviewed text and assets approved for disclosure. Do not copy code, credentials, internal URLs, private diagrams, logs, or internal evidence notes into the TechnicalHub repository or deployment artifact.
+
+The public Pages workflow must not check out the private implementation repository, use a private-repository token, or fetch private data. A maintainer may inspect the private project through authorized access and then write an approved public summary. The profile can explain technical ideas without exposing implementation source.
+
+References: [GitHub Pages site visibility](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site) and [GitHub Pages custom workflows](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).
+
+## Implementation components
+
+- Existing index.html, css/, and js/: passed through Eleventy while preserving the current home design and behavior.
+- `_includes/layouts/profile.njk` and `css/profile.css`: profile-only presentation based on EDPilot0001's editorial style; the home page continues using the Hub design system.
+- content/profiles/*.md: reviewed profile sources.
+- Eleventy configuration/templates: validate and render home cards and profile routes.
+- Validation/tests: enforce front matter, unique routes, allowed categories, publication status, and local asset references.
+- .github/workflows/pages.yml: build/check changes and publish only generated dist from the approved branch.
+- dist/: clean generated output, not source.
+
+## Non-goals
+
+No runtime server, database, accounts, public submission form, GitHub API integration, automatic private-repository sync, source-code hosting, or dependency scanner is part of this increment.
