@@ -6,7 +6,7 @@ TechnicalHub is deployed as a static site. Its published Face Landmark Tracker p
 
 - Architecture: current state, target static architecture, and private-source publication boundary.
 - Profile contract: approved Markdown front matter and public-content rules.
-- [Profile card authoring guide](PROFILE_CARD_GUIDE.md): standard workflow for the public brief, Markdown source, assets, card/detail behavior, local review, and deployment acceptance.
+- [Profile card authoring guide](PROFILE_CARD_GUIDE.md): standard workflow for the public brief, Markdown source, per-project card and social-preview assets, card/detail behavior, local review, and deployment acceptance.
 - Visual architecture: the hub/detail style boundary and implementation constraints are documented in Architecture and the Profile Card Authoring Guide.
 - Harness guide: current and planned commands and the profile publication workflow.
 - Integrated implementation TODO: cross-role work order and release gate for the Face Landmark Tracker profile.

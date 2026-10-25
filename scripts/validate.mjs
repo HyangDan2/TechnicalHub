@@ -14,8 +14,9 @@ const names = await readdir(profileDir).catch(() => []);
 const profileFiles = names.filter(name => name.endsWith('.md'));
 const ids = new Set();
 const slugs = new Set();
+const socialPreviews = new Set();
 const required = ['id', 'slug', 'title', 'summary', 'categories', 'status', 'updatedAt', 'technologies', 'references'];
-const allowed = new Set([...required, 'thumbnail', 'thumbnailAlt']);
+const allowed = new Set([...required, 'thumbnail', 'thumbnailAlt', 'socialPreview', 'socialPreviewAlt']);
 const validDate = value =>
   typeof value === 'string' &&
   /^\d{4}-\d{2}-\d{2}$/.test(value) &&
@@ -52,6 +53,9 @@ for (const name of profileFiles) {
   if (data.status === 'published' && (!data.thumbnail || !data.thumbnailAlt)) {
     fail('published profiles require a thumbnail and thumbnailAlt for the hub card');
   }
+  if (data.status === 'published' && (!data.socialPreview || !data.socialPreviewAlt)) {
+    fail('published profiles require a project-specific socialPreview and socialPreviewAlt');
+  }
   if ((data.thumbnail === undefined) !== (data.thumbnailAlt === undefined)) {
     fail('thumbnail and thumbnailAlt must be provided together');
   }
@@ -68,6 +72,36 @@ for (const name of profileFiles) {
   }
   if (data.thumbnailAlt !== undefined && (typeof data.thumbnailAlt !== 'string' || !data.thumbnailAlt.trim() || data.thumbnailAlt.length > 180)) {
     fail('thumbnailAlt must be non-empty text of at most 180 characters');
+  }
+  if ((data.socialPreview === undefined) !== (data.socialPreviewAlt === undefined)) {
+    fail('socialPreview and socialPreviewAlt must be provided together');
+  }
+  if (data.socialPreview !== undefined) {
+    if (typeof data.socialPreview !== 'string' || !/^assets\/profiles\/[a-z0-9-]+-social\.png$/.test(data.socialPreview)) {
+      fail('socialPreview must be a project-specific PNG under assets/profiles with a -social suffix');
+    } else {
+      if (data.status === 'published') {
+        if (socialPreviews.has(data.socialPreview)) fail('each published profile must use a unique socialPreview');
+        else socialPreviews.add(data.socialPreview);
+      }
+      try {
+        const image = await readFile(path.join(root, data.socialPreview));
+        const pngSignature = Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]);
+        if (
+          image.length < 24 ||
+          !image.subarray(0, 8).equals(pngSignature) ||
+          image.readUInt32BE(16) !== 1200 ||
+          image.readUInt32BE(20) !== 630
+        ) {
+          fail('socialPreview must be a valid 1200×630 PNG');
+        }
+      } catch {
+        fail('socialPreview file does not exist');
+      }
+    }
+  }
+  if (data.socialPreviewAlt !== undefined && (typeof data.socialPreviewAlt !== 'string' || !data.socialPreviewAlt.trim() || data.socialPreviewAlt.length > 180)) {
+    fail('socialPreviewAlt must be non-empty text of at most 180 characters');
   }
   if (!Array.isArray(data.categories) || !data.categories.length || data.categories.some(value => !categories.includes(value))) {
     fail('categories must be a non-empty list of ' + categories.join(', '));

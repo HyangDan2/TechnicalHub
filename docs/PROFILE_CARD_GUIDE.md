@@ -22,6 +22,8 @@ title: Example Technology
 summary: One concise, public-safe sentence describing the project.
 thumbnail: assets/profiles/example-technology-demo.png
 thumbnailAlt: Example Technology interface showing its main analysis view.
+socialPreview: assets/profiles/example-technology-social.png
+socialPreviewAlt: Example Technology project preview featuring its interface and project name.
 categories:
   - SW
 status: draft
@@ -56,9 +58,9 @@ Put approved images and diagrams under `assets/profiles/` with descriptive, stab
 ![Public architecture overview](../../assets/profiles/example-technology-architecture.svg)
 ```
 
-Every published profile must also define `thumbnail` and `thumbnailAlt` in its front matter. The thumbnail path is relative to the site root and must point to a local file in `assets/profiles/`; the card displays it above the text. Use useful alternative text and verify image dimensions and legibility.
+Every published profile must define `thumbnail`/`thumbnailAlt` and `socialPreview`/`socialPreviewAlt` in its front matter. The card thumbnail is relative to the site root and must point to a local file under `assets/profiles/`; the hub displays it above the card text. The social preview must be a project-specific PNG named `<slug>-social.png` under `assets/profiles/`, exactly 1200×630 pixels, with useful alternative text.
 
-The site branding assets live in `assets/branding/`: `favicon.svg` is the browser icon and `share.png` is the 1200×630 Open Graph/Twitter preview image. Keep the home and profile page metadata connected to these assets. Update the shared preview graphic when the hub's visual identity or featured profiles change.
+The site branding assets live in `assets/branding/`: `favicon.svg` is the browser icon and `share.png` is the 1200×630 Open Graph/Twitter preview image for the TechnicalHub home page. Keep this home preview unchanged when adding a project. Each profile detail page uses only its own `socialPreview` for Open Graph and Twitter link previews; do not reuse the shared hub image or include other profiles in a project's preview. Compose the project title and approved project-specific screenshot or artwork, without private repository material, source code, or unrelated project cards.
 
 Use only assets created for public release or explicitly approved for it. Diagrams must show only the abstraction level approved for publication. Do not include source screenshots containing private names, paths, tokens, or unrelated personal data.
 
@@ -66,7 +68,7 @@ Use only assets created for public release or explicitly approved for it. Diagra
 
 The build derives the card's title, summary, thumbnail, thumbnail alternative text, categories, update date, and destination from the profile front matter. The thumbnail appears above the card text, following the GameHub card pattern. The entire card is a single link, including the image, title, summary, category tags, date, and background. Keep the arrow as a visual cue; do not make it a separate control or nest another link inside the card.
 
-The home page and all published profile pages must have a favicon, canonical URL, page description, Open Graph title/description/URL/image metadata, and a large-image Twitter card declaration. Use the shared TechnicalHub preview image for link previews; keep those metadata tags in the home document and profile layout rather than in generated output.
+The home page and all published profile pages must have a favicon, canonical URL, page description, Open Graph title/description/URL/image metadata, and a large-image Twitter card declaration. The home document uses `assets/branding/share.png`; the profile layout resolves each page's `socialPreview` and `socialPreviewAlt` from that profile's Markdown front matter. Keep metadata in the source HTML/layout rather than generated output.
 
 Profile cards use the existing dark TechnicalHub/Hub home-page style. Detail pages use the light editorial style inspired by EDPilot0001, implemented only in TechnicalHub's `_includes/layouts/profile.njk` and `css/profile.css`. Keep the styles isolated: do not load the Hub stylesheet on detail pages, and do not change the Hub theme to style a profile. EDPilot0001 is a visual reference only; do not copy its code, content, scripts, or assets.
 
@@ -94,10 +96,10 @@ Open the home page at `http://localhost:4174/` and check the following:
 - The child page's visible `← Back to TechnicalHub` link resolves to `/TechnicalHub/#projects` and returns successfully; verify it does not point to Web-HQ or another profile.
 - The top-right `← TechHub` menu link also resolves to `/TechnicalHub/#projects`.
 - The home page still uses the Hub style. At narrow and wide viewport sizes, neither page has clipped text, horizontal overflow, broken links, or unreadable media.
-- The favicon loads from the home and nested profile route. Home and profile pages expose canonical, Open Graph, and Twitter preview metadata; the shared 1200×630 image loads.
+- The favicon loads from the home and nested profile route. Home and profile pages expose canonical, Open Graph, and Twitter preview metadata. The home uses the shared 1200×630 image; each profile uses a different project-only 1200×630 preview and matching alternative text.
 - A draft or unavailable profile produces neither a public card nor a detail route.
 
-Inspect the generated `dist/` output. Confirm the profile route, CSS, thumbnail, branding assets, social metadata, and catalog data are present; confirm drafts and private source details are absent. The validator checks the data contract and local thumbnail files, but a person must approve claims, disclosure, and assets.
+Inspect the generated `dist/` output. Confirm the profile route, CSS, card thumbnail, project-specific social preview, branding assets, social metadata, and catalog data are present; confirm drafts and private source details are absent. The validator checks the data contract and local assets, including the social preview dimensions, but a person must approve claims, disclosure, and assets.
 
 ## 6. Publish and verify
 
@@ -108,12 +110,12 @@ Wait for both the build and deploy jobs to succeed. Then verify the deployed hom
 ## Change checklist
 
 - [ ] Public brief and disclosure boundary approved.
-- [ ] One Markdown source file with valid, unique ID and slug, plus a local card thumbnail and alternative text.
+- [ ] One Markdown source file with valid, unique ID and slug, plus a local card thumbnail and a distinct project-only 1200×630 social preview with alternative text.
 - [ ] Card summary and detail article are consistent and non-duplicated.
 - [ ] All claims, versions, references, images, and diagrams are public-safe and approved.
 - [ ] Internal names, private URLs, credentials, source code, and unapproved evidence are absent.
 - [ ] `npm run validate` and `npm run build` pass.
-- [ ] Full-card pointer and keyboard navigation, filters, thumbnail, favicon, social preview metadata/image, detail page, and responsive layouts are reviewed locally.
+- [ ] Full-card pointer and keyboard navigation, filters, thumbnail, favicon, home share preview, distinct per-profile social previews/metadata, detail page, and responsive layouts are reviewed locally.
 - [ ] `dist/` contains only the intended public card, route, and assets.
 - [ ] GitHub Pages build and deploy succeed; hosted pages and links are checked.
 - [ ] `docs/CHANGELOG.md` records the deployed revision and evidence.

@@ -41,6 +41,7 @@ Use Markdown front matter for fields needed by the hub and detail template:
 - Stable ID and slug.
 - Title, short summary, approved categories, status (draft, published, unavailable), and updated date.
 - Local card thumbnail and alternative text for every published profile.
+- A project-only 1200×630 social preview and alternative text for every published profile; the hub home keeps the shared TechnicalHub social image.
 - Technology names and their roles in the project. Include versions only when approved and supported.
 - Optional public source/reference URLs.
 - Markdown body for the public article.
@@ -63,7 +64,8 @@ References: [GitHub Pages site visibility](https://docs.github.com/en/pages/gett
 
 - Existing index.html, css/, and js/: passed through Eleventy while preserving the current home design and behavior.
 - `_includes/layouts/profile.njk` and `css/profile.css`: profile-only presentation based on EDPilot0001's editorial style; the home page continues using the Hub design system.
-- `assets/branding/favicon.svg` and `assets/branding/share.png`: shared browser icon and 1200×630 social preview referenced by home and profile page metadata.
+- `assets/branding/favicon.svg` and `assets/branding/share.png`: shared browser icon and the home page's 1200×630 social preview.
+- `assets/profiles/<slug>-social.png`: one 1200×630 social preview per published project. Profile metadata resolves to its own image; it does not reuse the hub preview or show other profiles.
 - content/profiles/*.md: reviewed profile sources.
 - Eleventy configuration/templates: validate and render home cards and profile routes.
 - Validation/tests: enforce front matter, unique routes, allowed categories, publication status, and local asset references.
