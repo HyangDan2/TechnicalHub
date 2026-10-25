@@ -3,6 +3,8 @@ id: general-purpose-video-image-mixer
 slug: general-purpose-video-image-mixer
 title: General Purpose Video/Image Mixer
 summary: A private desktop application that mixes two video or still-image sources in real time using selectable visual patterns.
+thumbnail: assets/profiles/general-purpose-video-image-mixer-demo.png
+thumbnailAlt: Two still-image sources mixed with Zig-zag mode in the desktop application.
 categories:
   - SW
   - Utility

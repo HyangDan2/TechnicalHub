@@ -5,11 +5,18 @@
   "type": "object",
   "additionalProperties": false,
   "required": ["id", "slug", "title", "summary", "categories", "status", "updatedAt", "technologies", "references"],
+  "allOf": [
+    { "if": { "properties": { "status": { "const": "published" } } }, "then": { "required": ["thumbnail", "thumbnailAlt"] } },
+    { "if": { "required": ["thumbnail"] }, "then": { "required": ["thumbnailAlt"] } },
+    { "if": { "required": ["thumbnailAlt"] }, "then": { "required": ["thumbnail"] } }
+  ],
   "properties": {
     "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
     "slug": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
     "title": { "type": "string", "minLength": 1 },
     "summary": { "type": "string", "minLength": 1 },
+    "thumbnail": { "type": "string", "pattern": "^assets/profiles/[a-z0-9-]+\\.(png|jpe?g|webp|svg)$" },
+    "thumbnailAlt": { "type": "string", "minLength": 1, "maxLength": 180 },
     "categories": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "enum": ["HW", "SW", "AI", "Data", "ML", "DL", "Utility", "Etc"] } },
     "status": { "enum": ["draft", "published", "unavailable"] },
     "updatedAt": { "type": "string", "format": "date" },

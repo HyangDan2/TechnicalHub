@@ -15,7 +15,7 @@ const profileFiles = names.filter(name => name.endsWith('.md'));
 const ids = new Set();
 const slugs = new Set();
 const required = ['id', 'slug', 'title', 'summary', 'categories', 'status', 'updatedAt', 'technologies', 'references'];
-const allowed = new Set(required);
+const allowed = new Set([...required, 'thumbnail', 'thumbnailAlt']);
 const validDate = value =>
   typeof value === 'string' &&
   /^\d{4}-\d{2}-\d{2}$/.test(value) &&
@@ -48,6 +48,26 @@ for (const name of profileFiles) {
 
   for (const field of ['title', 'summary']) {
     if (typeof data[field] !== 'string' || !data[field].trim()) fail(field + ' must be a non-empty string');
+  }
+  if (data.status === 'published' && (!data.thumbnail || !data.thumbnailAlt)) {
+    fail('published profiles require a thumbnail and thumbnailAlt for the hub card');
+  }
+  if ((data.thumbnail === undefined) !== (data.thumbnailAlt === undefined)) {
+    fail('thumbnail and thumbnailAlt must be provided together');
+  }
+  if (data.thumbnail !== undefined) {
+    if (typeof data.thumbnail !== 'string' || !/^assets\/profiles\/[a-z0-9-]+\.(png|jpe?g|webp|svg)$/.test(data.thumbnail)) {
+      fail('thumbnail must be a local asset path under assets/profiles');
+    } else {
+      try {
+        await readFile(path.join(root, data.thumbnail));
+      } catch {
+        fail('thumbnail file does not exist');
+      }
+    }
+  }
+  if (data.thumbnailAlt !== undefined && (typeof data.thumbnailAlt !== 'string' || !data.thumbnailAlt.trim() || data.thumbnailAlt.length > 180)) {
+    fail('thumbnailAlt must be non-empty text of at most 180 characters');
   }
   if (!Array.isArray(data.categories) || !data.categories.length || data.categories.some(value => !categories.includes(value))) {
     fail('categories must be a non-empty list of ' + categories.join(', '));

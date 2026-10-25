@@ -1,10 +1,10 @@
 # TechnicalHub architecture
 
-**Current state:** deployed static directory with a Markdown/Eleventy profile pipeline. The Face Landmark Tracker card and detail route are published; later profile additions follow the [Profile Card Authoring Guide](PROFILE_CARD_GUIDE.md).
+**Current state:** deployed static directory with a Markdown/Eleventy profile pipeline. Face Landmark Tracker and General Purpose Video/Image Mixer have published cards and detail routes; later profile additions follow the [Profile Card Authoring Guide](PROFILE_CARD_GUIDE.md).
 
 ## Purpose
 
-TechnicalHub is a directory of software projects and their technologies. The home page supports category filters and name search. Public technical introductions use generated internal profile routes. Face Landmark Tracker is the first profile; its implementation source remains private.
+TechnicalHub is a directory of software projects and their technologies. The home page supports category filters and name search, and shows a thumbnail for each published profile. Public technical introductions use generated internal profile routes. Both published profile projects keep their implementation source private.
 
 Canonical repository: https://github.com/hyangdan2/TechnicalHub
 Public site: https://hyangdan2.github.io/TechnicalHub/
@@ -40,6 +40,7 @@ Use Markdown front matter for fields needed by the hub and detail template:
 
 - Stable ID and slug.
 - Title, short summary, approved categories, status (draft, published, unavailable), and updated date.
+- Local card thumbnail and alternative text for every published profile.
 - Technology names and their roles in the project. Include versions only when approved and supported.
 - Optional public source/reference URLs.
 - Markdown body for the public article.
@@ -62,6 +63,7 @@ References: [GitHub Pages site visibility](https://docs.github.com/en/pages/gett
 
 - Existing index.html, css/, and js/: passed through Eleventy while preserving the current home design and behavior.
 - `_includes/layouts/profile.njk` and `css/profile.css`: profile-only presentation based on EDPilot0001's editorial style; the home page continues using the Hub design system.
+- `assets/branding/favicon.svg` and `assets/branding/share.png`: shared browser icon and 1200×630 social preview referenced by home and profile page metadata.
 - content/profiles/*.md: reviewed profile sources.
 - Eleventy configuration/templates: validate and render home cards and profile routes.
 - Validation/tests: enforce front matter, unique routes, allowed categories, publication status, and local asset references.

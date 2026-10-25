@@ -8,7 +8,7 @@
 | Command | Target behavior |
 | --- | --- |
 | npm ci | Install exact dependencies from the lockfile using the pinned Node runtime. |
-| npm run validate | Validate the generated catalog contract and Markdown profile fields, unique slugs, categories, URLs, status, required technology roles, and article content. |
+| npm run validate | Validate the generated catalog contract and Markdown profile fields, unique slugs, categories, URLs, local card thumbnails and alt text, status, required technology roles, and article content. |
 | npm test | Run deterministic tests without network access for validation, draft visibility, route generation, and listing data. |
 | npm run build | Validate and generate the clean static site into dist with Eleventy; no private repository access. |
 | npm run test:e2e | Check home and profile behavior in a browser at representative desktop/mobile widths. |
@@ -34,6 +34,8 @@ The Face Landmark Tracker profile and its home card are deployed. Profile detail
 
 - Keep the hub landing page styled by `css/styles.css` and preserve its current dark Hub appearance.
 - Keep technology detail pages styled by `css/profile.css` only. Match the EDPilot0001 reference through its light ivory/green palette, editorial typography, restrained separators, and monospaced labels.
+- Keep the TechnicalHub favicon in `assets/branding/favicon.svg` and the 1200×630 social preview in `assets/branding/share.png`. The hub and each profile route must emit canonical, Open Graph, and large-image Twitter card metadata.
+- Published profile cards must use a validated local thumbnail and alternative text. Render it above the text inside the same whole-card link, following the GameHub image-card pattern.
 - Do not import EDPilot0001 code, scripts, content, or image assets. Recreate only the approved visual language within TechnicalHub's profile template.
 - Every child profile must render a visible `← Back to TechnicalHub` link with `href="../../#projects"`; on GitHub Pages this resolves to `/TechnicalHub/#projects`. The top-right hub menu must use the concise label `← TechHub` and the same destination. The TechnicalHub brand returns to `../../`; `Web-HQ` is a separate parent-site link, never the profile return target.
 - For any profile CSS or template change, inspect both the home page and a nested profile at desktop and mobile widths. Ensure the profile stylesheet loads at the nested GitHub Pages route.

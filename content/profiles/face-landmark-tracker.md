@@ -3,6 +3,8 @@ id: face-landmark-tracker
 slug: face-landmark-tracker
 title: Face Landmark Tracker
 summary: A private desktop application that tracks facial landmarks from live or mock video, estimates head pose, and raises a drowsiness warning when eye closure is sustained.
+thumbnail: assets/profiles/face-landmark-tracker-dms-warning.jpg
+thumbnailAlt: Face Landmark Tracker showing a drowsiness warning over mock video.
 categories:
   - AI
   - ML

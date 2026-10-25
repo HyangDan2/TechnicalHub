@@ -22,7 +22,7 @@ export function validateCatalog(catalog) {
   catalog.projects.forEach((p, i) => {
     const at = `$.projects[${i}]`;
     if (!p || typeof p !== 'object' || Array.isArray(p)) { fail(at, 'expected object'); return; }
-    for (const key of Object.keys(p)) if (!['id', 'name', 'summary', 'repositoryUrl', 'profileUrl', 'categories', 'inspectedAt', 'updatedAt'].includes(key)) fail(`${at}.${key}`, 'unknown field');
+    for (const key of Object.keys(p)) if (!['id', 'name', 'summary', 'thumbnail', 'thumbnailAlt', 'repositoryUrl', 'profileUrl', 'categories', 'inspectedAt', 'updatedAt'].includes(key)) fail(`${at}.${key}`, 'unknown field');
     for (const key of ['id', 'name', 'categories']) if (!(key in p)) fail(`${at}.${key}`, 'required field missing');
     if (!p.repositoryUrl && !p.profileUrl) fail(at, 'repositoryUrl or profileUrl is required');
     if (!p.inspectedAt && !p.updatedAt) fail(at, 'inspectedAt or updatedAt is required');
@@ -31,6 +31,10 @@ export function validateCatalog(catalog) {
     else if (ids.has(p.id)) fail(`${at}.id`, `duplicate ID ${p.id}`); else ids.add(p.id);
     if (typeof p.name !== 'string' || !p.name.trim()) fail(`${at}.name`, 'must be a non-empty string');
     if (p.summary !== undefined && (typeof p.summary !== 'string' || !p.summary.trim())) fail(`${at}.summary`, 'must be a non-empty string when provided');
+    if (p.thumbnail !== undefined && (typeof p.thumbnail !== 'string' || !/^\.\/assets\/profiles\/[a-z0-9-]+\.(png|jpe?g|webp|svg)$/.test(p.thumbnail))) fail(`${at}.thumbnail`, 'must be a relative profile asset path');
+    if (p.thumbnailAlt !== undefined && (typeof p.thumbnailAlt !== 'string' || !p.thumbnailAlt.trim() || p.thumbnailAlt.length > 180)) fail(`${at}.thumbnailAlt`, 'must be a non-empty alternative text under 180 characters');
+    if ((p.thumbnail === undefined) !== (p.thumbnailAlt === undefined)) fail(at, 'thumbnail and thumbnailAlt must be provided together');
+    if (p.profileUrl && (!p.thumbnail || !p.thumbnailAlt)) fail(at, 'profile cards require a thumbnail and alternative text');
     if (p.repositoryUrl !== undefined && typeof p.repositoryUrl !== 'string') fail(`${at}.repositoryUrl`, 'must be a string');
     else if (typeof p.repositoryUrl === 'string') {
       try {

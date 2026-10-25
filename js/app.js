@@ -45,6 +45,21 @@ function renderProjects() {
       link.target = '_blank';
       link.rel = 'noopener noreferrer';
     }
+    if (project.thumbnail) {
+      const imageFrame = document.createElement('span');
+      imageFrame.className = 'card-image';
+      const image = document.createElement('img');
+      image.src = project.thumbnail;
+      image.alt = project.thumbnailAlt || '';
+      image.width = 960;
+      image.height = 533;
+      image.loading = 'lazy';
+      image.decoding = 'async';
+      imageFrame.append(image);
+      link.append(imageFrame);
+    }
+    const body = document.createElement('span');
+    body.className = 'project-card-body';
     const title = document.createElement('span');
     title.className = 'project-title';
     title.textContent = project.name;
@@ -55,12 +70,12 @@ function renderProjects() {
     const titleRow = document.createElement('span');
     titleRow.className = 'project-title-row';
     titleRow.append(title, arrow);
-    link.append(titleRow);
+    body.append(titleRow);
     if (project.summary) {
       const summary = document.createElement('span');
       summary.className = 'project-summary';
       summary.textContent = project.summary;
-      link.append(summary);
+      body.append(summary);
     }
     const tags = document.createElement('span');
     tags.className = 'card-meta';
@@ -73,7 +88,8 @@ function renderProjects() {
     const date = document.createElement('span');
     date.className = 'inspected-date';
     date.textContent = `${project.updatedAt ? '소개 갱신일' : '조사일'} ${project.updatedAt || project.inspectedAt}`;
-    link.append(tags, date);
+    body.append(tags, date);
+    link.append(body);
     item.append(link);
     list.append(item);
   }
