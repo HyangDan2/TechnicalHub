@@ -5,6 +5,7 @@ This file records meaningful, dated changes to TechnicalHub documentation and pr
 ## 2026-10-25
 
 - Added the General Purpose Video/Image Mixer profile with the generic UML component diagram and a runtime capture using two still-image sources in Zig-zag mode; the private source and repository link are omitted.
+- Published the profile in commit `deb89ab`; [Pages run 40149097366](https://github.com/HyangDan2/TechnicalHub/actions/runs/40149097366) succeeded. Verified the hosted card catalog, [profile page](https://hyangdan2.github.io/TechnicalHub/technologies/general-purpose-video-image-mixer/), and both profile assets returned successfully.
 - Shortened the child profile header's hub return menu to `← TechHub` and aligned the profile authoring, contract, and harness guidance with the shared `/TechnicalHub/#projects` destination.
 - Updated technology profile detail pages to use an isolated light editorial style based on EDPilot0001, while preserving the dark TechnicalHub/Hub design on the home page.
 - Updated the architecture, harness, profile contract, documentation index, integrated TODO, and Front-end, Back-end, and Git administrator guides to describe the hub/detail style boundary and its validation requirements.
