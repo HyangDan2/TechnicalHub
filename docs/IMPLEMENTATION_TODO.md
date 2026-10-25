@@ -4,7 +4,7 @@
 
 **Current site:** https://hyangdan2.github.io/TechnicalHub/
 **Proposed profile route:** /TechnicalHub/technologies/face-landmark-tracker/
-**Status:** English profile content and the generated home card pass the local production build. The profile detail layout now follows the EDPilot0001 editorial visual reference while the hub keeps its dark Hub style. Profile route, stylesheet isolation, and both images require refreshed local visual review; hosted deployment remains separate.
+**Status:** English profile content, the full-card home link, and the profile detail route are deployed. The detail layout follows the EDPilot0001 editorial visual reference while the hub keeps its dark Hub style. The reusable workflow is in `docs/PROFILE_CARD_GUIDE.md`; broader responsive and automated browser checks remain follow-up work.
 
 ## Work board
 
@@ -15,12 +15,12 @@
 | BE-02 | Back-end | P0 | Add Eleventy static generation and migrate the existing home page/assets into shared templates. | BE-01 | Build generates the home page and nested profile route, supports the GitHub Pages base path, and preserves the existing visual/interaction behavior. | Done; local build succeeds |
 | BE-03 | Back-end | P0 | Create the Face Landmark Tracker Markdown profile and generate hub listing/search data from the same content source. | BE-01–BE-02; DEC-01 | One editable profile drives both detail and home card; no manually duplicated project record; draft content is absent from dist output. | Done; profile and hub catalog generated locally |
 | BE-04 | Back-end | P0 | Add profile validation and deterministic tests. | BE-01 | Invalid metadata, duplicate slug, missing article, invalid category/status/URL, or missing local asset fails clearly; draft profiles are excluded. | Core validation implemented; automated regression tests remain planned |
-| FE-01 | Front-end | P0 | Add the Face Landmark Tracker card with a short summary and internal profile link. | BE-01; BE-03 | Card displays approved title, summary, categories, and update date; no private repository link is present. | Build and local hub route verified |
-| FE-02 | Front-end | P0 | Implement the English profile layout in the EDPilot0001 editorial visual style, keeping the home page on the Hub style. | BE-02–BE-03 | Purpose, architecture diagram, technology roles, demonstration image, limitations, update date, and return navigation render clearly; profile CSS is isolated and EDPilot0001 source/assets are not copied. | Implemented locally; refreshed visual review pending |
+| FE-01 | Front-end | P0 | Add the Face Landmark Tracker card with a short summary and internal profile link. | BE-01; BE-03 | Entire card is one accessible link; title, summary, categories, and update date are visible, with no private repository link. | Deployed; local and hosted link structure verified |
+| FE-02 | Front-end | P0 | Implement the English profile layout in the EDPilot0001 editorial visual style, keeping the home page on the Hub style. | BE-02–BE-03 | Purpose, architecture diagram, technology roles, demonstration image, limitations, update date, and return navigation render clearly; profile CSS is isolated and EDPilot0001 source/assets are not copied. | Deployed; hosted route and media verified |
 | FE-03 | Front-end | P1 | Verify search/filter and accessibility across home and detail routes. | FE-01–FE-02; BE-04 | Search/filter, keyboard use, visible focus, nested-route assets, 360/390/768/1440px layouts, long text, and reduced motion are checked. | Planned |
 | GIT-01 | Git administrator | P0 | Add pull-request validation/build CI without deployment. | BE-02 command interface | PR workflow uses the lockfile and deterministic checks; PR runs cannot deploy Pages. | Planned |
 | GIT-02 | Git administrator | P0 | Lock Eleventy dependencies and align local/CI Node versions. | BE-02 package manifest | Lockfile is committed; clean install and build work locally and in CI; no private-source credential is configured. | Planned |
-| GIT-03 | Git administrator | P0 | Deploy and verify the nested profile route on GitHub Pages. | FE-02; BE-02–BE-04; GIT-01 | Only dist is deployed; home and profile URLs, styles, images, and navigation work on the hosted site. | Pending; latest profile edits are local |
+| GIT-03 | Git administrator | P0 | Deploy and verify the nested profile route on GitHub Pages. | FE-02; BE-02–BE-04; GIT-01 | Only dist is deployed; home and profile URLs, styles, images, and navigation work on the hosted site. | Done; deployment and hosted route verified |
 | GIT-04 | Git administrator | P1 | Record release evidence and rollback steps. | GIT-03 | Record the revision, workflow run, hosted URLs, style asset checks, limitations, recovery procedure, and post-rollback verification. | Planned |
 
 ## Dependency order

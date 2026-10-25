@@ -2,7 +2,9 @@
 
 A profile is a Markdown file under `content/profiles/`. Its front matter is the source for the hub card and profile route; its Markdown body is the article. The hub card displays the title, short summary, categories, and update date, and links to the generated profile. The route is `/TechnicalHub/technologies/<slug>/` on GitHub Pages and `/technologies/<slug>/` relative to the site root locally. Stable `id` and `slug` use lowercase kebab-case and are unique.
 
-The hub card follows the TechnicalHub/Hub home-page design. The profile detail route follows the EDPilot0001 editorial visual reference using TechnicalHub's own profile layout and stylesheet. This visual choice does not change profile data or route semantics and does not authorize copying code, content, scripts, or media from the reference project.
+Follow the [Technology Profile and Card Authoring Guide](PROFILE_CARD_GUIDE.md) for the standard creation, review, local check, and release sequence. The generated card is a single accessible link across its full surface.
+
+The hub card follows the TechnicalHub/Hub home-page design. The profile detail route follows the EDPilot0001 editorial visual reference using TechnicalHub's own profile layout and stylesheet. Its top-right hub menu is labeled `← TechHub` and returns to `/TechnicalHub/#projects`; the separate `← Back to TechnicalHub` link remains visible in the page body. This visual choice does not change profile data or route semantics and does not authorize copying code, content, scripts, or media from the reference project.
 
 Required front matter fields are `id`, `slug`, `title`, `summary`, `categories`, `status`, `updatedAt`, `technologies`, and `references`. Categories use the approved values `HW`, `SW`, `AI`, `Data`, `ML`, `DL`, `Utility`, and `Etc`. Status is `draft`, `published`, or `unavailable`. `updatedAt` uses `YYYY-MM-DD`. Each technology has a name and its project role; version is optional and is included only when approved and supported. References are optional public HTTPS links represented by an empty array when absent.
 

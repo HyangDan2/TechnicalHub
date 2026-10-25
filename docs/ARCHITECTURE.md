@@ -1,6 +1,6 @@
 # TechnicalHub architecture
 
-**Current state:** deployed static directory with a local Markdown/Eleventy profile pipeline. The Face Landmark Tracker card and profile are built locally; these latest profile edits have not been deployed to Pages.
+**Current state:** deployed static directory with a Markdown/Eleventy profile pipeline. The Face Landmark Tracker card and detail route are published; later profile additions follow the [Profile Card Authoring Guide](PROFILE_CARD_GUIDE.md).
 
 ## Purpose
 
@@ -47,6 +47,8 @@ Use Markdown front matter for fields needed by the hub and detail template:
 The private source URL is not required. For Face Landmark Tracker, omit it from content, generated HTML, JSON, page metadata, and workflow logs. The profile may state that the implementation source is private. Keep the current category vocabulary (HW, SW, AI, Data, ML, DL, Utility, Etc.) unless an explicit taxonomy change is approved.
 
 Markdown profiles are the editable source of truth. Generated HTML, listing/search data, and dist are build outputs and must not be manually edited. Draft profiles must not generate public pages or cards.
+
+The standard profile-creation, card-interaction, review, and publication workflow is maintained in [the Technology Profile and Card Authoring Guide](PROFILE_CARD_GUIDE.md).
 
 ## Privacy and publication boundary
 

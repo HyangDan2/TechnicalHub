@@ -4,10 +4,13 @@ This file records meaningful, dated changes to TechnicalHub documentation and pr
 
 ## 2026-10-25
 
+- Added the General Purpose Video/Image Mixer profile with the generic UML component diagram and a runtime capture using two still-image sources in Zig-zag mode; the private source and repository link are omitted.
+- Shortened the child profile header's hub return menu to `← TechHub` and aligned the profile authoring, contract, and harness guidance with the shared `/TechnicalHub/#projects` destination.
 - Updated technology profile detail pages to use an isolated light editorial style based on EDPilot0001, while preserving the dark TechnicalHub/Hub design on the home page.
 - Updated the architecture, harness, profile contract, documentation index, integrated TODO, and Front-end, Back-end, and Git administrator guides to describe the hub/detail style boundary and its validation requirements.
 - Kept the profile layout and CSS self-contained in TechnicalHub; no EDPilot0001 code, scripts, content, or assets are reused.
 - Made the full project card a single link so clicking its title, summary, tags, date, or card background opens the destination; kept the arrow as a visual cue.
+- Added `PROFILE_CARD_GUIDE.md` as the standard workflow for profile briefs, Markdown metadata, public assets, whole-card navigation, TechnicalHub return navigation, visual review, and Pages publication; linked it from the contract, harness, architecture, and docs index.
 
 ## 2026-10-24
 

@@ -1,0 +1,50 @@
+@startuml ColumnVideoMixerGenericComponents
+top to bottom direction
+!pragma layout smetana
+skinparam linetype ortho
+skinparam backgroundColor #F6F8F4
+skinparam componentStyle uml2
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam dpi 160
+skinparam ArrowColor #53635A
+skinparam ArrowThickness 1.5
+skinparam component {
+  BackgroundColor #FFFFFF
+  BorderColor #536B5D
+  FontColor #1C2A22
+}
+skinparam database {
+  BackgroundColor #F7FAF5
+  BorderColor #7C9183
+  FontColor #1C2A22
+}
+
+component "Media Source 1\n(Video or Still Image)" as Source1
+component "Media Source 2\n(Video or Still Image)" as Source2
+component "Source Reader 1\n(Video Decoder / Image Feeder)" as Reader1
+component "Source Reader 2\n(Video Decoder / Image Feeder)" as Reader2
+database "Frame Queue 1" as Queue1
+database "Frame Queue 2" as Queue2
+component "Frame Pairing" as Pairing
+component "Frame Size Normalization\nMatch Source 2 to Source 1" as Normalize
+component "Mixing Mode Processor\nColumns / Checkerboard / Zig-zag" as Mixer
+component "Display Conversion\nBGR to RGB / QImage" as Convert
+component "Desktop UI (PySide6)\nMixed Output + Resolution Metadata" as UI
+
+Source1 -[hidden]right- Source2
+Reader1 -[hidden]right- Reader2
+Queue1 -[hidden]right- Queue2
+Source1 -down-> Reader1
+Source2 -down-> Reader2
+Reader1 -down-> Queue1
+Reader2 -down-> Queue2
+Queue1 -down-> Pairing
+Queue2 -down-> Pairing
+Pairing -down-> Normalize
+Normalize -down-> Mixer
+Mixer -down-> Convert
+Convert -down-> UI
+@enduml

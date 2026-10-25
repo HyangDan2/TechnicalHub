@@ -17,11 +17,11 @@
 | npm run check:links | Optional external URL checks, separate from deterministic local verification. |
 | npm run verify:hosted | After release, verify the public home page, Face Landmark Tracker profile route, assets, and internal navigation. |
 
-The Face Landmark Tracker profile builds locally. Profile detail pages use the EDPilot0001 editorial visual reference, while the hub landing page retains the TechnicalHub/Hub style. The latest profile edits have not yet been deployed to Pages; local build success is not hosted acceptance.
+The Face Landmark Tracker profile and its home card are deployed. Profile detail pages use the EDPilot0001 editorial visual reference, while the hub landing page retains the TechnicalHub/Hub style. Local build success alone is not hosted acceptance.
 
 ## Adding or updating a profile
 
-1. Read this guide, the architecture, and role TODOs.
+1. Follow the [Technology Profile and Card Authoring Guide](PROFILE_CARD_GUIDE.md), and review the architecture and role TODOs.
 2. Confirm the maintainer-approved public disclosure brief. Do not assume private repository contents or its URL may be published.
 3. Inspect project facts only with authorized access. Keep private inspection notes outside the public repository.
 4. Create or update one stable Markdown profile. Keep the home summary and detail article in the same file.
@@ -35,6 +35,7 @@ The Face Landmark Tracker profile builds locally. Profile detail pages use the E
 - Keep the hub landing page styled by `css/styles.css` and preserve its current dark Hub appearance.
 - Keep technology detail pages styled by `css/profile.css` only. Match the EDPilot0001 reference through its light ivory/green palette, editorial typography, restrained separators, and monospaced labels.
 - Do not import EDPilot0001 code, scripts, content, or image assets. Recreate only the approved visual language within TechnicalHub's profile template.
+- Every child profile must render a visible `← Back to TechnicalHub` link with `href="../../#projects"`; on GitHub Pages this resolves to `/TechnicalHub/#projects`. The top-right hub menu must use the concise label `← TechHub` and the same destination. The TechnicalHub brand returns to `../../`; `Web-HQ` is a separate parent-site link, never the profile return target.
 - For any profile CSS or template change, inspect both the home page and a nested profile at desktop and mobile widths. Ensure the profile stylesheet loads at the nested GitHub Pages route.
 
 ## Privacy and evidence boundaries
