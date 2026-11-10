@@ -47,9 +47,9 @@ function card(project, index) {
     image.decoding = 'async';
     image.addEventListener('error', () => {
       image.src = './assets/profiles/placeholder.svg';
-      image.alt = `${project.name} — 미리보기 준비 중`;
+      image.alt = `${project.name} — preview coming soon`;
     }, { once: true });
-    frame.append(image, element('span', 'image-caption', '프로필 화면'));
+    frame.append(image, element('span', 'image-caption', 'Profile Screen'));
     article.append(frame);
   }
 
@@ -63,15 +63,15 @@ function card(project, index) {
   body.append(
     kicker,
     element('h3', 'card-title', project.name),
-    element('p', 'card-subtitle', `소개 갱신 ${project.updatedAt || project.inspectedAt}`),
+    element('p', 'card-subtitle', project.updatedAt ? `Updated ${project.updatedAt}` : `Inspected ${project.inspectedAt}`),
     element('p', 'card-description', project.summary ?? ''),
     meta,
   );
 
   const destination = project.profileUrl || project.repositoryUrl;
-  const link = element('a', 'action-link', project.profileUrl ? '프로필 보기' : '저장소 열기');
+  const link = element('a', 'action-link', project.profileUrl ? 'View Profile' : 'Open Repo');
   link.href = destination;
-  link.setAttribute('aria-label', `${project.name} ${project.profileUrl ? '프로필 보기' : '저장소 열기'}`);
+  link.setAttribute('aria-label', project.profileUrl ? `View ${project.name} profile` : `Open ${project.name} repository`);
   if (!project.profileUrl) {
     link.target = '_blank';
     link.rel = 'noopener noreferrer';
@@ -87,21 +87,21 @@ function card(project, index) {
 }
 
 function renderProjects() {
-  const query = search.value.trim().toLocaleLowerCase('ko');
+  const query = search.value.trim().toLocaleLowerCase('en');
   const visible = projects.filter(project => {
     const matchesCategory = !activeCategory || project.categories.includes(activeCategory);
-    const searchableText = `${project.name} ${project.summary || ''}`.toLocaleLowerCase('ko');
+    const searchableText = `${project.name} ${project.summary || ''}`.toLocaleLowerCase('en');
     const matchesQuery = !query || searchableText.includes(query);
     return matchesCategory && matchesQuery;
   });
   list.replaceChildren();
   for (const [index, project] of visible.entries()) list.append(card(project, index));
-  count.textContent = `${visible.length}개`;
+  count.textContent = `${visible.length} ${visible.length === 1 ? 'project' : 'projects'}`;
   status.hidden = visible.length > 0;
   list.setAttribute('aria-busy', 'false');
   status.textContent = projects.length === 0
-    ? '아직 등록된 프로젝트가 없습니다.'
-    : '조건에 맞는 프로젝트가 없습니다. 검색어나 분야를 바꿔보세요.';
+    ? 'No projects registered yet.'
+    : 'No projects match those filters. Try another search term or domain.';
   reset.disabled = !search.value && !activeCategory;
 }
 
@@ -125,9 +125,9 @@ fetch('./data/catalog.json')
     renderProjects();
   })
   .catch(() => {
-    count.textContent = '불러오기 실패';
+    count.textContent = 'Load failed';
     status.hidden = false;
-    status.textContent = '프로젝트 목록을 불러오지 못했습니다. 페이지를 새로고침해 주세요.';
+    status.textContent = 'Couldn’t load the project list. Reload the page to try again.';
     list.replaceChildren();
     list.setAttribute('aria-busy', 'false');
   });
