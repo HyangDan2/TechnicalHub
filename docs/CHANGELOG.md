@@ -2,7 +2,13 @@
 
 This file records meaningful, dated changes to TechnicalHub documentation and product behavior. Planned work is not reported as implemented behavior.
 
-## 2026-11-10
+## 2026-11-10 — English interface
+
+- Localized the hub interface to English: page title and meta/OG/Twitter description, skip link, header navigation ("Browse Projects"), hero copy and CTA ("Find Projects ↓"), collection heading and note, search placeholder and accessible label, reset button, filter-group and results labels, loading, empty, error, and count messages, card caption ("Profile Screen"), date subtitles ("Updated …" / "Inspected …"), and actions ("View Profile ↗" / "Open Repo ↗" with descriptive `aria-label`s).
+- Search lower-casing now uses the `en` locale instead of `ko`.
+- Profile content and GitHub metadata are unchanged.
+
+## 2026-11-10 — HD2Lab brand alignment
 
 - Aligned TechnicalHub with the HD2Lab brand: signature orange `--accent: #ff824f` on `#101110`, the dual-skew `.mark` in the header, `HD2Lab` / `TechnicalHub` wordmark, and ApplicationHub · GameHub · Web-HQ links in the global navigation.
 - Synced the standard HD2Lab favicon set (`favicon.svg`, `favicon-32x32.png`, `apple-touch-icon.png`, `favicon.ico`) and regenerated the 1200×630 `assets/branding/share.png`.
