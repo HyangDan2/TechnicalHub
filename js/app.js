@@ -9,13 +9,18 @@ const status = document.querySelector('#status');
 let projects = [];
 let activeCategory = '';
 
+const element = (tag, className, text) => {
+  const node = document.createElement(tag);
+  if (className) node.className = className;
+  if (text !== undefined) node.textContent = text;
+  return node;
+};
+
 function renderFilters() {
   filters.replaceChildren();
   for (const category of categoryNames) {
-    const button = document.createElement('button');
+    const button = element('button', 'filter-chip', category);
     button.type = 'button';
-    button.className = 'filter-chip';
-    button.textContent = category;
     button.setAttribute('aria-pressed', String(activeCategory === category));
     button.addEventListener('click', () => {
       activeCategory = activeCategory === category ? '' : category;
@@ -24,6 +29,61 @@ function renderFilters() {
     });
     filters.append(button);
   }
+}
+
+function card(project, index) {
+  const item = element('li', 'project-card-item');
+  const article = element('article', 'project-card');
+  article.dataset.project = project.id;
+
+  if (project.thumbnail) {
+    const frame = element('div', 'card-image');
+    const image = element('img');
+    image.src = `./${project.thumbnail}`;
+    image.alt = project.thumbnailAlt || '';
+    image.width = 960;
+    image.height = 540;
+    image.loading = 'lazy';
+    image.decoding = 'async';
+    image.addEventListener('error', () => {
+      image.src = './assets/profiles/placeholder.svg';
+      image.alt = `${project.name} — 미리보기 준비 중`;
+    }, { once: true });
+    frame.append(image, element('span', 'image-caption', '프로필 화면'));
+    article.append(frame);
+  }
+
+  const body = element('div', 'card-body');
+  const kicker = element('div', 'card-kicker');
+  kicker.append(element('span', '', project.categories.join(' · ').toUpperCase()), element('span', 'card-index', String(index + 1).padStart(2, '0')));
+  const meta = element('div', 'card-meta');
+  const pills = (Array.isArray(project.technologies) && project.technologies.length ? project.technologies : project.categories).slice(0, 4);
+  for (const pill of pills) meta.append(element('span', 'meta-pill', pill));
+
+  body.append(
+    kicker,
+    element('h3', 'card-title', project.name),
+    element('p', 'card-subtitle', `소개 갱신 ${project.updatedAt || project.inspectedAt}`),
+    element('p', 'card-description', project.summary ?? ''),
+    meta,
+  );
+
+  const destination = project.profileUrl || project.repositoryUrl;
+  const link = element('a', 'action-link', project.profileUrl ? '프로필 보기' : '저장소 열기');
+  link.href = destination;
+  link.setAttribute('aria-label', `${project.name} ${project.profileUrl ? '프로필 보기' : '저장소 열기'}`);
+  if (!project.profileUrl) {
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+  }
+  const arrow = element('span', '', '↗');
+  arrow.setAttribute('aria-hidden', 'true');
+  link.append(arrow);
+  body.append(link);
+
+  article.append(body);
+  item.append(article);
+  return item;
 }
 
 function renderProjects() {
@@ -35,64 +95,7 @@ function renderProjects() {
     return matchesCategory && matchesQuery;
   });
   list.replaceChildren();
-  for (const project of visible) {
-    const item = document.createElement('li');
-    item.className = 'project-card-item';
-    const link = document.createElement('a');
-    link.className = 'project-card project-link';
-    link.href = project.profileUrl || project.repositoryUrl;
-    if (!project.profileUrl) {
-      link.target = '_blank';
-      link.rel = 'noopener noreferrer';
-    }
-    if (project.thumbnail) {
-      const imageFrame = document.createElement('span');
-      imageFrame.className = 'card-image';
-      const image = document.createElement('img');
-      image.src = project.thumbnail;
-      image.alt = project.thumbnailAlt || '';
-      image.width = 960;
-      image.height = 533;
-      image.loading = 'lazy';
-      image.decoding = 'async';
-      imageFrame.append(image);
-      link.append(imageFrame);
-    }
-    const body = document.createElement('span');
-    body.className = 'project-card-body';
-    const title = document.createElement('span');
-    title.className = 'project-title';
-    title.textContent = project.name;
-    const arrow = document.createElement('span');
-    arrow.className = 'project-arrow';
-    arrow.setAttribute('aria-hidden', 'true');
-    arrow.textContent = project.profileUrl ? '→' : '↗';
-    const titleRow = document.createElement('span');
-    titleRow.className = 'project-title-row';
-    titleRow.append(title, arrow);
-    body.append(titleRow);
-    if (project.summary) {
-      const summary = document.createElement('span');
-      summary.className = 'project-summary';
-      summary.textContent = project.summary;
-      body.append(summary);
-    }
-    const tags = document.createElement('span');
-    tags.className = 'card-meta';
-    for (const category of project.categories) {
-      const tag = document.createElement('span');
-      tag.className = 'category-tag';
-      tag.textContent = category;
-      tags.append(tag);
-    }
-    const date = document.createElement('span');
-    date.className = 'inspected-date';
-    date.textContent = `${project.updatedAt ? '소개 갱신일' : '조사일'} ${project.updatedAt || project.inspectedAt}`;
-    body.append(tags, date);
-    link.append(body);
-    item.append(link);
-    list.append(item);
-  }
+  for (const [index, project] of visible.entries()) list.append(card(project, index));
   count.textContent = `${visible.length}개`;
   status.hidden = visible.length > 0;
   list.setAttribute('aria-busy', 'false');

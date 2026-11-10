@@ -22,7 +22,7 @@ export function validateCatalog(catalog) {
   catalog.projects.forEach((p, i) => {
     const at = `$.projects[${i}]`;
     if (!p || typeof p !== 'object' || Array.isArray(p)) { fail(at, 'expected object'); return; }
-    for (const key of Object.keys(p)) if (!['id', 'name', 'summary', 'thumbnail', 'thumbnailAlt', 'repositoryUrl', 'profileUrl', 'categories', 'inspectedAt', 'updatedAt'].includes(key)) fail(`${at}.${key}`, 'unknown field');
+    for (const key of Object.keys(p)) if (!['id', 'name', 'summary', 'thumbnail', 'thumbnailAlt', 'repositoryUrl', 'profileUrl', 'categories', 'technologies', 'inspectedAt', 'updatedAt'].includes(key)) fail(`${at}.${key}`, 'unknown field');
     for (const key of ['id', 'name', 'categories']) if (!(key in p)) fail(`${at}.${key}`, 'required field missing');
     if (!p.repositoryUrl && !p.profileUrl) fail(at, 'repositoryUrl or profileUrl is required');
     if (!p.inspectedAt && !p.updatedAt) fail(at, 'inspectedAt or updatedAt is required');
@@ -54,6 +54,12 @@ export function validateCatalog(catalog) {
         if (!categories.includes(category)) fail(`${at}.categories[${j}]`, `must be one of ${categories.join(', ')}`);
         if (seen.has(category)) fail(`${at}.categories[${j}]`, 'duplicate category');
         seen.add(category);
+      });
+    }
+    if (p.technologies !== undefined) {
+      if (!Array.isArray(p.technologies) || p.technologies.length === 0) fail(`${at}.technologies`, 'must be a non-empty array');
+      else p.technologies.forEach((name, j) => {
+        if (typeof name !== 'string' || !name.trim()) fail(`${at}.technologies[${j}]`, 'must be a non-empty string');
       });
     }
     const dateField = p.updatedAt ? 'updatedAt' : 'inspectedAt';
