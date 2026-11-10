@@ -8,7 +8,7 @@
     <title>{{ title | escape }} — TechnicalHub</title>
     <link rel="canonical" href="https://hyangdan2.github.io/TechnicalHub/technologies/{{ slug | escape }}/">
     <meta property="og:type" content="article">
-    <meta property="og:site_name" content="TechnicalHub">
+    <meta property="og:site_name" content="HD2Lab TechnicalHub">
     <meta property="og:title" content="{{ title | escape }} — TechnicalHub">
     <meta property="og:description" content="{{ summary | escape }}">
     <meta property="og:url" content="https://hyangdan2.github.io/TechnicalHub/technologies/{{ slug | escape }}/">
@@ -21,20 +21,23 @@
     <meta name="twitter:description" content="{{ summary | escape }}">
     <meta name="twitter:image" content="https://hyangdan2.github.io/TechnicalHub/{{ socialPreview | escape }}">
     <link rel="icon" href="../../assets/branding/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="../../assets/branding/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="apple-touch-icon" href="../../assets/branding/apple-touch-icon.png" sizes="180x180">
+    <link rel="shortcut icon" href="../../assets/branding/favicon.ico">
     <link rel="stylesheet" href="../../css/profile.css">
   </head>
   <body class="profile-site">
     <a class="skip-link" href="#profile-content">Skip to content</a>
     <header class="site-header shell">
-      <a class="brand" href="../../" aria-label="TechnicalHub home"><span class="brand-icon" aria-hidden="true"></span><span>TechnicalHub<small>TECHNOLOGY ARCHIVE</small></span></a>
-      <nav aria-label="Main menu"><a href="../../#projects">← TechHub</a><a href="https://hyangdan2.github.io/">Web-HQ <span aria-hidden="true">↗</span></a></nav>
+      <a class="brand" href="../../" aria-label="TechnicalHub home"><span class="mark" aria-hidden="true"></span><span class="brand-name">HD2Lab</span><em>TechnicalHub</em></a>
+      <nav aria-label="Main menu"><a href="../../#projects">← TechnicalHub</a><a class="hub-link" href="https://hyangdan2.github.io/ApplicationHub/">ApplicationHub <span aria-hidden="true">↗</span></a><a class="hub-link" href="https://hyangdan2.github.io/GameHub/">GameHub <span aria-hidden="true">↗</span></a><a class="web-hq-link" href="https://hyangdan2.github.io/">Web-HQ <span aria-hidden="true">↗</span></a></nav>
     </header>
     <main id="profile-content" class="profile-page shell">
       <a class="profile-back" href="../../#projects">← Back to TechnicalHub</a>
       <article>
         <header class="profile-heading">
           <p class="eyebrow"><span class="status-dot"></span> PUBLIC PROJECT PROFILE · PRIVATE SOURCE</p>
-          <h1>{{ title | escape }}<span class="lime">.</span></h1>
+          <h1>{{ title | escape }}<span class="accent">.</span></h1>
           <p class="profile-summary">{{ summary | escape }}</p>
           <div class="profile-meta">
             {% for category in categories %}<span class="category-tag">{{ category | escape }}</span>{% endfor %}
@@ -56,6 +59,6 @@
         <div class="profile-article">{{ content | safe }}</div>
       </article>
     </main>
-    <footer class="site-footer shell"><div><span class="footer-brand">TechnicalHub</span><p>Technology profiles and architecture notes.</p></div><a href="../../#projects">Browse the hub <span aria-hidden="true">↗</span></a></footer>
+    <footer class="site-footer shell"><div><span class="footer-brand">HD2Lab <span class="accent">/</span> TechnicalHub</span><p>Technology profiles and architecture notes.</p></div><a href="../../#projects">Browse the hub <span aria-hidden="true">↗</span></a></footer>
   </body>
 </html>

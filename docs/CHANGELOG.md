@@ -2,6 +2,15 @@
 
 This file records meaningful, dated changes to TechnicalHub documentation and product behavior. Planned work is not reported as implemented behavior.
 
+## 2026-11-10
+
+- Aligned TechnicalHub with the HD2Lab brand: signature orange `--accent: #ff824f` on `#101110`, the dual-skew `.mark` in the header, `HD2Lab` / `TechnicalHub` wordmark, and ApplicationHub · GameHub · Web-HQ links in the global navigation.
+- Synced the standard HD2Lab favicon set (`favicon.svg`, `favicon-32x32.png`, `apple-touch-icon.png`, `favicon.ico`) and regenerated the 1200×630 `assets/branding/share.png`.
+- Replaced the simple `project-card-item` list card with the GameHub card spec: 16:9 `card-image` with caption, category kicker plus index, title, profile-update subtitle, summary, technology `meta-pill` stack, and an `action-link`. A single real link plus its overlay keeps whole-card navigation and keyboard activation.
+- Added the profile technology names to the generated `data/catalog.json` and validated them, so the cards show a stack (Python, PySide6, OpenCV, MediaPipe …) instead of repeating the category chips.
+- Rebranded the light profile pages: `.mark` header, `HD2Lab / TechnicalHub` brand, ApplicationHub · GameHub · Web-HQ menu, and a warm accent for the title period and footer.
+- Verified `npm run validate` and `npm run build` locally, then reviewed the hub and profile pages in Chromium at 390, 768, and 1440 px (no horizontal overflow). Merge and Pages deployment remain pending.
+
 ## 2026-10-25
 
 - Added the General Purpose Video/Image Mixer profile with the generic UML component diagram and a runtime capture using two still-image sources in Zig-zag mode; the private source and repository link are omitted.

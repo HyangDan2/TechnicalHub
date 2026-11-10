@@ -14,6 +14,7 @@ eleventyExcludeFromCollections: true
       "thumbnailAlt": {{ profile.data.thumbnailAlt | json | safe }},
       "profileUrl": {{ ("./technologies/" ~ profile.data.slug ~ "/") | json | safe }},
       "categories": {{ profile.data.categories | json | safe }},
+      "technologies": [{% for technology in profile.data.technologies %}{{ technology.name | json | safe }}{% if not loop.last %}, {% endif %}{% endfor %}],
       "updatedAt": {{ profile.data.updatedAt | json | safe }}
     }{% if not loop.last %},{% endif %}
     {% endfor %}
