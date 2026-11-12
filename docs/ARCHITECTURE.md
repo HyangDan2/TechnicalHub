@@ -12,7 +12,7 @@ The parent Web-HQ page is maintained separately.
 
 ## Visual architecture
 
-TechnicalHub has two intentionally different visual contexts. The hub landing page uses the existing dark TechnicalHub/Hub design system for project discovery, filters, and search. Technology profile detail pages use the light editorial visual language of the neighboring EDPilot0001 site: warm ivory background, deep green text, teal accents, restrained borders, and monospaced section labels. This is a visual reference only; profile pages remain part of TechnicalHub and do not import EDPilot0001 source code, scripts, content, or assets.
+TechnicalHub uses one HD2Lab design system in two editorial contexts. The hub landing page uses the dark Hub style for project discovery, filters, and search. Technology profile detail pages keep the same HD2Lab Dark Tech palette (`#101110` background, `#1b1d1a` cards, `#343630` borders, `#f3f2ec` text, `#ff824f` accent) with the editorial layout of the neighboring EDPilot0001 site: restrained borders and monospaced section labels. The EDPilot0001 site is a layout reference only; profile pages remain part of TechnicalHub and do not import its source code, scripts, content, or assets.
 
 Keep the distinction isolated in the profile layout and `css/profile.css`. Do not load the hub stylesheet on profile routes or change the hub stylesheet to achieve profile-specific styling. Verify both a hub page and a profile route whenever shared templates or CSS are changed.
 

@@ -8,7 +8,7 @@
 | FE-02 | P0 | Create the shared Face Landmark Tracker detail-page layout and public profile using the EDPilot0001 editorial style. | BE-01; BE-02 generated route | Page has English content, warm ivory background, green/teal palette, monospaced labels, article, technology roles, approved diagram and demonstration image, update date, and a clear return-to-hub link. Profile styling is isolated from Hub styles. | Deployed; hosted route, CSS, and media verified |
 | FE-03 | P0 | Adapt category/search behavior and empty states to the profile-card model. | FE-01; BE-01 | Existing search and filters continue to work; cards route internally; drafts are not shown; empty and no-results states remain distinct. | Planned |
 | FE-04 | P1 | Add accessible content and responsive detail-page behavior. | FE-02 | Semantic headings, keyboard navigation, visible focus, useful diagram alternatives, 360/390/768/1440px layout checks, text expansion, and reduced motion are verified. | Planned |
-| FE-05 | P1 | Review generated production pages and relative paths. | BE-03; GIT-03 | Home keeps the dark Hub style; profile uses EDPilot0001's light editorial style; both work under /TechnicalHub/ with correct CSS, images, and navigation at desktop/mobile widths. | Hosted routes and assets verified; full responsive viewport review remains pending |
+| FE-05 | P1 | Review generated production pages and relative paths. | BE-03; GIT-03 | Home keeps the dark Hub style; profile uses the same HD2Lab dark editorial style; both work under /TechnicalHub/ with correct CSS, images, and navigation at desktop/mobile widths. | Hosted routes and assets verified; full responsive viewport review remains pending |
 
 ## Boundaries
 
