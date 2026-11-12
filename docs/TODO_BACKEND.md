@@ -25,4 +25,4 @@
 - `docs/PROFILE_CARD_GUIDE.md` is the standard workflow for adding a profile and its generated full-card home link.
 - Eleventy is pinned in `package.json` and `package-lock.json`; `eleventy.config.js` builds a clean static output while passing through the current home page, assets, and catalog.
 - The Face Landmark Tracker profile, shared English layout, generated catalog entry, profile route, and core profile validation are implemented and deployed. Automated browser regression tests remain planned.
-- The profile template links only to `css/profile.css`, which implements the EDPilot0001 editorial visual reference; the home page continues to use the Hub stylesheet. Keep route-relative profile asset paths valid at `/TechnicalHub/technologies/<slug>/`.
+- The profile template links only to `css/profile.css`, which implements the HD2Lab dark editorial profile style; the home page continues to use the Hub stylesheet. Keep route-relative profile asset paths valid at `/TechnicalHub/technologies/<slug>/`.

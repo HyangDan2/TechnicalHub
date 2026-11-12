@@ -33,7 +33,7 @@ The Face Landmark Tracker profile and its home card are deployed. Profile detail
 ## Visual implementation rules
 
 - Keep the hub landing page styled by `css/styles.css` and preserve its current dark Hub appearance.
-- Keep technology detail pages styled by `css/profile.css` only. Match the EDPilot0001 reference through its light ivory/green palette, editorial typography, restrained separators, and monospaced labels.
+- Keep technology detail pages styled by `css/profile.css` only. Use the HD2Lab Dark Tech palette (`#101110` paper, `#1b1d1a` card, `#343630` line, `#ff824f` accent) with the EDPilot0001 editorial layout: editorial typography, restrained separators, and monospaced labels.
 - Keep the TechnicalHub favicon in `assets/branding/favicon.svg` and the hub's 1200×630 social preview in `assets/branding/share.png`. Each published profile must have its own 1200×630 project-only preview in `assets/profiles/<slug>-social.png`; profile Open Graph and Twitter metadata must use that project's image while the hub metadata continues to use `share.png`.
 - Published profile cards must use a validated local thumbnail and alternative text. Render it above the text inside the same whole-card link, following the GameHub image-card pattern.
 - Do not import EDPilot0001 code, scripts, content, or image assets. Recreate only the approved visual language within TechnicalHub's profile template.

@@ -63,7 +63,7 @@ References: [GitHub Pages site visibility](https://docs.github.com/en/pages/gett
 ## Implementation components
 
 - Existing index.html, css/, and js/: passed through Eleventy while preserving the current home design and behavior.
-- `_includes/layouts/profile.njk` and `css/profile.css`: profile-only presentation based on EDPilot0001's editorial style; the home page continues using the Hub design system.
+- `_includes/layouts/profile.njk` and `css/profile.css`: profile-only presentation that follows EDPilot0001's editorial layout in the HD2Lab Dark Tech palette; the home page continues using the Hub design system.
 - `assets/branding/favicon.svg` and `assets/branding/share.png`: shared browser icon and the home page's 1200×630 social preview.
 - `assets/profiles/<slug>-social.png`: one 1200×630 social preview per published project. Profile metadata resolves to its own image; it does not reuse the hub preview or show other profiles.
 - content/profiles/*.md: reviewed profile sources.
