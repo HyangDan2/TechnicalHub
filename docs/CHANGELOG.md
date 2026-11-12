@@ -2,6 +2,14 @@
 
 This file records meaningful, dated changes to TechnicalHub documentation and product behavior. Planned work is not reported as implemented behavior.
 
+## 2026-11-13 — AGPilot0005 and AGPilot0006 technical profiles
+
+- Added the `agent-core-platform` profile for HD2Lab Agent Core Platform (AGCore), AGPilot0005: a standalone agent runtime on FastAPI and LangGraph with a tool registry and dispatcher, context budgeting, SSE execution tracing, and a bundled web demo console. Sections cover the runtime architecture, core features, the demo console, the REST/SSE contract, and the privacy and isolation boundary.
+- Added the `document-intelligence-service` profile for HD2Lab Document Intelligence Service (DocIntel), AGPilot0006: streaming ingestion, PDF/DOCX/PPTX parsing into a document tree, token-aware chunking with a strict 1,500-token ceiling, page and slide rendering with asset extraction, FTS5 search, and the query API contract, including the PyMuPDF AGPL v3 isolation note.
+- Added six public assets under `assets/profiles/`: two 1200×630 social previews (`agent-core-platform-social.png`, `document-intelligence-service-social.png`), two 960×540 card thumbnails (`agent-core-platform-demo.png`, `document-intelligence-service-demo.png`), and two SVG architecture diagrams. The previews and thumbnails use the HD2Lab dark palette (`#101110`, `#ff824f`, `#1b1d19`) and the dual-skew mark; the demo images are renderings of the console and inspector layouts, not captures of a live session with real credentials.
+- Technology versions follow the projects' own dependency pins and constraints (FastAPI 0.162 and LangGraph 1.2 in AGCore; FastAPI 0.115+ and Pydantic 2.9+ in DocIntel) rather than earlier draft numbers.
+- `npm run validate` reports `Catalog and 4 profile(s) are valid.`; `npm run build` writes both `technologies/agent-core-platform/` and `technologies/document-intelligence-service/` routes plus their catalog entries. Reviewed the hub and both profile routes in Chromium at 1280 px and 390 px: four cards render with thumbnails and alt text, both detail pages load their diagrams and images, and the console and inspector renderings stay legible.
+
 ## 2026-11-10 — English interface
 
 - Localized the hub interface to English: page title and meta/OG/Twitter description, skip link, header navigation ("Browse Projects"), hero copy and CTA ("Find Projects ↓"), collection heading and note, search placeholder and accessible label, reset button, filter-group and results labels, loading, empty, error, and count messages, card caption ("Profile Screen"), date subtitles ("Updated …" / "Inspected …"), and actions ("View Profile ↗" / "Open Repo ↗" with descriptive `aria-label`s).
