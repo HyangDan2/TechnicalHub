@@ -53,8 +53,8 @@ img, svg { max-width: 100%; height: auto; }
 .brand { display: flex; align-items: center; gap: 11px; color: var(--profile-ink); text-decoration: none; font-family: var(--profile-mono); font-weight: 800; letter-spacing: -1.2px; line-height: 1.05; }
 .brand-name { font-size: 23px; }
 .brand em { font-style: normal; font-weight: 500; font-size: 13px; letter-spacing: 0; color: var(--profile-muted); border-left: 1px solid var(--profile-line); padding-left: 11px; }
-.mark { display: inline-block; width: 15px; height: 19px; border: 2.5px solid var(--profile-teal); transform: skewY(-23deg); position: relative; flex: none; }
-.mark:after { content: ''; position: absolute; inset: 3px -7px -6px 3px; border: 2px solid var(--profile-teal); }
+/* Official HD2Lab logo — the round emblem of LOGO.png (the dual-skew mark is favicon-only) */
+.brand-logo { display: block; width: 32px; height: 32px; border-radius: 50%; flex: none; }
 .site-header nav { display: flex; gap: 28px; align-items: center; font-size: 13px; }
 .site-header nav a { color: var(--profile-ink); text-decoration: none; }
 .site-header nav a:hover { color: var(--profile-teal); }
