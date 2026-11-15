@@ -50,11 +50,12 @@ img, svg { max-width: 100%; height: auto; }
   -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
 }
-.brand { display: flex; align-items: center; gap: 11px; color: var(--profile-ink); text-decoration: none; font-family: var(--profile-mono); font-weight: 800; letter-spacing: -1.2px; line-height: 1.05; }
-.brand-name { font-size: 23px; }
-.brand em { font-style: normal; font-weight: 500; font-size: 13px; letter-spacing: 0; color: var(--profile-muted); border-left: 1px solid var(--profile-line); padding-left: 11px; }
-.mark { display: inline-block; width: 15px; height: 19px; border: 2.5px solid var(--profile-teal); transform: skewY(-23deg); position: relative; flex: none; }
-.mark:after { content: ''; position: absolute; inset: 3px -7px -6px 3px; border: 2px solid var(--profile-teal); }
+/* the Web-HQ lockup: [mark] HD2Lab | TechnicalHub */
+.brand { display: flex; align-items: center; gap: 12px; flex: none; white-space: nowrap; color: var(--profile-ink); text-decoration: none; font-family: var(--profile-sans); font-weight: 800; letter-spacing: -1.5px; line-height: 1.05; }
+.brand-name { font-size: 25px; font-weight: 800; letter-spacing: -1.5px; }
+.brand em { font-style: normal; font-weight: 400; font-size: 12px; letter-spacing: 0; color: var(--profile-muted); border-left: 1px solid var(--profile-line); padding-left: 13px; }
+.mark { display: inline-block; width: 17px; height: 22px; border: 3px solid var(--profile-teal); transform: skewY(-23deg); position: relative; flex-shrink: 0; }
+.mark:after { content: ''; position: absolute; inset: 4px -8px -7px 4px; border: 2px solid var(--profile-teal); }
 .site-header nav { display: flex; gap: 28px; align-items: center; font-size: 13px; }
 .site-header nav a { color: var(--profile-ink); text-decoration: none; }
 .site-header nav a:hover { color: var(--profile-teal); }
@@ -116,8 +117,8 @@ img, svg { max-width: 100%; height: auto; }
 @media (max-width: 620px) {
   .shell { width: calc(100% - 40px); }
   .site-header { min-height: 0; flex-wrap: wrap; padding-block: 12px 0; }
-  .brand { font-size: 20px; min-height: 40px; }
-  .brand-name { font-size: 20px; }
+  .brand { gap: 10px; min-height: 42px; font-size: 22px; }
+  .brand-name { font-size: 22px; }
   .brand em { display: none; }
   .site-header nav { order: 3; width: 100%; justify-content: space-between; gap: 12px; padding-block: 9px; font-size: 10px; overflow-x: auto; scrollbar-width: none; }
   .site-header nav::-webkit-scrollbar { display: none; }
@@ -132,7 +133,10 @@ img, svg { max-width: 100%; height: auto; }
 }
 @media (max-width: 370px) {
   .shell { width: calc(100% - 32px); }
-  .brand { font-size: 18px; }
+  .brand { gap: 8px; font-size: 20px; }
+  .brand-name { font-size: 20px; }
+  .mark { width: 14px; height: 18px; border-width: 2px; }
+  .mark:after { inset: 3px -6px -5px 3px; border-width: 2px; }
   .site-header nav { gap: 10px; font-size: 10px; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .technology-row { transition: none; } }
