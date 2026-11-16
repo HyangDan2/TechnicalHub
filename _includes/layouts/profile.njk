@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{{ summary | escape }}">
-    <meta name="theme-color" content="#FAFAFD">
+    <meta name="theme-color" id="theme-color" content="#FAFAFD">
     <title>{{ title | escape }} — TechnicalHub</title>
     <link rel="canonical" href="https://hyangdan2.github.io/TechnicalHub/technologies/{{ slug | escape }}/">
     <meta property="og:type" content="article">
@@ -25,6 +25,7 @@
     <link rel="apple-touch-icon" href="../../assets/branding/apple-touch-icon.png" sizes="180x180">
     <link rel="shortcut icon" href="../../assets/branding/favicon.ico">
     <link rel="stylesheet" href="../../css/profile.css">
+    <script>(function(){try{if(localStorage.getItem('hd2-theme')==='dark'){document.documentElement.dataset.theme='dark';var m=document.getElementById('theme-color');if(m)m.setAttribute('content','#0B1020');}}catch(e){}})();</script>
   </head>
   <body class="profile-site">
     <a class="skip-link" href="#profile-content">Skip to content</a>
@@ -59,6 +60,8 @@
         <div class="profile-article">{{ content | safe }}</div>
       </article>
     </main>
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark mode"><span class="theme-toggle-icon" aria-hidden="true">🌙</span><span class="theme-toggle-label">Dark</span></button>
     <footer class="site-footer shell"><div><span class="footer-brand">HD2Lab <span class="accent">/</span> TechnicalHub</span><p>Technology profiles and architecture notes.</p></div><a href="../../#projects">Browse the hub <span aria-hidden="true">↗</span></a></footer>
+    <script src="../../js/theme.js"></script>
   </body>
 </html>

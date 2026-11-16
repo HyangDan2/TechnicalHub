@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Explore technical domains and discover verified system architectures.">
-    <meta name="theme-color" content="#FAFAFD">
+    <meta name="theme-color" id="theme-color" content="#FAFAFD">
     <title>TechnicalHub — Verified Project Directory</title>
     <link rel="canonical" href="https://hyangdan2.github.io/TechnicalHub/">
     <meta property="og:type" content="website">
@@ -27,6 +27,7 @@
     <link rel="apple-touch-icon" href="./assets/branding/apple-touch-icon.png" sizes="180x180">
     <link rel="shortcut icon" href="./assets/branding/favicon.ico">
     <link rel="stylesheet" href="./css/styles.css">
+    <script>(function(){try{if(localStorage.getItem('hd2-theme')==='dark'){document.documentElement.dataset.theme='dark';var m=document.getElementById('theme-color');if(m)m.setAttribute('content','#0B1020');}}catch(e){}})();</script>
     <script type="module" src="./js/app.js"></script>
   </head>
   <body>
@@ -81,9 +82,11 @@
         <div class="collection-bottom"><span><span class="tiny-dot"></span> Profile refresh dates shown</span><span>Inspect each project’s technology profile</span></div>
       </section>
     </main>
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark mode"><span class="theme-toggle-icon" aria-hidden="true">🌙</span><span class="theme-toggle-label">Dark</span></button>
     <footer class="site-footer shell">
       <div><span class="footer-brand">HD2Lab <span class="accent">/</span> TechnicalHub</span><p>Verified projects, one click away.</p></div>
       <a href="https://github.com/hyangdan2/TechnicalHub" target="_blank" rel="noopener noreferrer">TechnicalHub <span aria-hidden="true">↗</span></a>
     </footer>
+    <script src="./js/theme.js"></script>
   </body>
 </html>
