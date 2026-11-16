@@ -4,7 +4,7 @@
 
 **Current site:** https://hyangdan2.github.io/TechnicalHub/
 **Proposed profile route:** /TechnicalHub/technologies/face-landmark-tracker/
-**Status:** English profile content, the full-card home link, and the profile detail route are deployed. The detail layout follows the EDPilot0001 editorial visual reference while the hub keeps its dark Hub style. The reusable workflow is in `docs/PROFILE_CARD_GUIDE.md`; broader responsive and automated browser checks remain follow-up work.
+**Status:** English profile content, the full-card home link, and the profile detail route are deployed. The detail layout follows the EDPilot0001 editorial visual reference while the hub keeps its Soft Iris Hub style. The reusable workflow is in `docs/PROFILE_CARD_GUIDE.md`; broader responsive and automated browser checks remain follow-up work.
 
 ## Work board
 

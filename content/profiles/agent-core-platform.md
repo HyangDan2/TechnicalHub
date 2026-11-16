@@ -6,7 +6,7 @@ summary: A standalone, universal agent runtime built on FastAPI and LangGraph, p
 thumbnail: assets/profiles/agent-core-platform-demo.png
 thumbnailAlt: HD2Lab Agent Core Platform demo console showing agent execution events, tool results, and a context budget meter.
 socialPreview: assets/profiles/agent-core-platform-social.png
-socialPreviewAlt: HD2Lab Agent Core Platform technical profile card with an agent run trace, final answer, and technology labels.
+socialPreviewAlt: HD2Lab Agent Core Platform technical profile card with the agent demo console render and technology labels.
 categories:
   - AI
   - SW

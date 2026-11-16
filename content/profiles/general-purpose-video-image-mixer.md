@@ -6,7 +6,7 @@ summary: A private desktop application that mixes two video or still-image sourc
 thumbnail: assets/profiles/general-purpose-video-image-mixer-demo.png
 thumbnailAlt: Two still-image sources mixed with Zig-zag mode in the desktop application.
 socialPreview: assets/profiles/general-purpose-video-image-mixer-social.png
-socialPreviewAlt: General Purpose Video/Image Mixer profile preview with its Zig-zag application capture and input labels.
+socialPreviewAlt: General Purpose Video/Image Mixer technical profile card with its Zig-zag runtime capture and technology labels.
 categories:
   - SW
   - Utility

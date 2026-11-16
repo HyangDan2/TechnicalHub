@@ -6,7 +6,7 @@ summary: A standalone document intelligence backend that parses PDF, DOCX, and P
 thumbnail: assets/profiles/document-intelligence-service-demo.png
 thumbnailAlt: DocIntel document inspector showing a parsed document tree, chunk details, and extracted figure thumbnails.
 socialPreview: assets/profiles/document-intelligence-service-social.png
-socialPreviewAlt: HD2Lab Document Intelligence Service technical profile card with the parsed document tree and chunk inspector views.
+socialPreviewAlt: HD2Lab Document Intelligence Service technical profile card with the document inspector render and technology labels.
 categories:
   - AI
   - Data
