@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-11-16 — Soft Iris (white & violet) design language
+
+- Re-skinned both TechnicalHub surfaces to the Soft Iris tokens from `HyangDan2/Server-HQ` (`HD2Lab/hub-common.css`): `css/styles.css` for the hub (`#FAFAFD` ground, `#FFFFFF` panels, `#F4F1FC` soft panel, `#E8E4F2` lines, `#1D192B` text, `#68627A` muted, `#8B6CE8` accent, `#7655D9` hover, `#6B4CD6` small-text accent) and `css/profile.css` for the technology profiles (same palette through the `--profile-*` variables; links and small labels use `#6B4CD6`, the mark, dots, markers, and blockquote rule use `#8B6CE8`).
+- The hub hero art is now a light `HD2` disc on an `#E3DBFD` hairline with a stacked `#EDE9F7`/`#D4CCE8` shadow and violet orbit rings; the sticky profile header uses `rgb(250 250 253 / 94%)` with the same blur.
+- Regenerated the favicon set (`favicon.svg`, `favicon-32x32.png`, `apple-touch-icon.png`, `favicon.ico`) and `assets/branding/share.png` (1200×630) in Soft Iris; `og:image`/`twitter:image` cache buster → `?v=20261116-soft-iris` on the hub, `theme-color` → `#FAFAFD` on the hub and the profile layout.
+- Regenerated the four per-profile 1200×630 social cards (`agent-core-platform`, `document-intelligence-service`, `face-landmark-tracker`, `general-purpose-video-image-mixer`) as one Soft Iris family: profile tag row with the dual-skew mark, title, summary, stack line, and that profile's real product render in a white framed screen, plus the profile URL footer. `socialPreviewAlt` on the three profiles that described the old artwork now describes the rendered screen.
+- Tightened the mobile header nav (10px type, 10px gap) so the four cross-hub links fit a 390px screen instead of clipping "Web-HQ".
+- Updated the palette references in `docs/ARCHITECTURE.md`, `docs/HARNESS_GUIDE.md`, `docs/PROFILE_CARD_GUIDE.md`, `docs/README.md`, `docs/TODO_BACKEND.md`, `docs/TODO_FRONTEND.md`, and `docs/IMPLEMENTATION_TODO.md` from the retired dark Hub/Dark Tech palette to Soft Iris.
+- Verification: `npm run validate` (4 profiles, 4 social previews at 1200×630) and `npm run build` pass; headless Chromium at 1440×900 and 390×844 on the hub and a profile route reports 0 console errors, 0 horizontal overflow, and `--accent: #8B6CE8`.
+
 This file records meaningful, dated changes to TechnicalHub documentation and product behavior. Planned work is not reported as implemented behavior.
 
 ## 2026-11-13 — AGPilot0005 and AGPilot0006 technical profiles

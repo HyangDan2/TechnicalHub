@@ -12,7 +12,7 @@ The parent Web-HQ page is maintained separately.
 
 ## Visual architecture
 
-TechnicalHub uses one HD2Lab design system in two editorial contexts. The hub landing page uses the dark Hub style for project discovery, filters, and search. Technology profile detail pages keep the same HD2Lab Dark Tech palette (`#101110` background, `#1b1d1a` cards, `#343630` borders, `#f3f2ec` text, `#ff824f` accent) with the editorial layout of the neighboring EDPilot0001 site: restrained borders and monospaced section labels. The EDPilot0001 site is a layout reference only; profile pages remain part of TechnicalHub and do not import its source code, scripts, content, or assets.
+TechnicalHub uses one HD2Lab design system in two editorial contexts. The hub landing page uses the Soft Iris Hub style for project discovery, filters, and search. Technology profile detail pages keep the same Soft Iris palette (`#FAFAFD` paper, `#FFFFFF` cards, `#E8E4F2` borders, `#1D192B` text, `#8B6CE8` accent, `#6B4CD6` small-text accent) with the editorial layout of the neighboring EDPilot0001 site: restrained borders and monospaced section labels. The EDPilot0001 site is a layout reference only; profile pages remain part of TechnicalHub and do not import its source code, scripts, content, or assets.
 
 Keep the distinction isolated in the profile layout and `css/profile.css`. Do not load the hub stylesheet on profile routes or change the hub stylesheet to achieve profile-specific styling. Verify both a hub page and a profile route whenever shared templates or CSS are changed.
 
@@ -63,7 +63,7 @@ References: [GitHub Pages site visibility](https://docs.github.com/en/pages/gett
 ## Implementation components
 
 - Existing index.html, css/, and js/: passed through Eleventy while preserving the current home design and behavior.
-- `_includes/layouts/profile.njk` and `css/profile.css`: profile-only presentation that follows EDPilot0001's editorial layout in the HD2Lab Dark Tech palette; the home page continues using the Hub design system.
+- `_includes/layouts/profile.njk` and `css/profile.css`: profile-only presentation that follows EDPilot0001's editorial layout in the Soft Iris palette; the home page continues using the Hub design system.
 - `assets/branding/favicon.svg` and `assets/branding/share.png`: shared browser icon and the home page's 1200×630 social preview.
 - `assets/profiles/<slug>-social.png`: one 1200×630 social preview per published project. Profile metadata resolves to its own image; it does not reuse the hub preview or show other profiles.
 - content/profiles/*.md: reviewed profile sources.

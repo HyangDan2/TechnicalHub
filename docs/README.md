@@ -1,6 +1,6 @@
 # TechnicalHub documentation
 
-TechnicalHub is deployed as a static site. Its published Face Landmark Tracker profile and full-surface linked home card are generated from Markdown using Eleventy. The Hub landing page keeps its dark TechnicalHub/Hub design; detail pages use the EDPilot0001 editorial visual reference through a separate TechnicalHub stylesheet. This documentation set distinguishes the current deployed behavior from pending work.
+TechnicalHub is deployed as a static site. Its published Face Landmark Tracker profile and full-surface linked home card are generated from Markdown using Eleventy. The Hub landing page uses the Soft Iris TechnicalHub/Hub design; detail pages use the EDPilot0001 editorial visual reference through a separate TechnicalHub stylesheet in the same Soft Iris palette. This documentation set distinguishes the current deployed behavior from pending work.
 
 ## Documents
 
