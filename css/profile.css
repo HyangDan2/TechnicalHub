@@ -142,3 +142,35 @@ img, svg { max-width: 100%; height: auto; }
   .site-header nav { gap: 10px; font-size: 10px; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .technology-row { transition: none; } }
+
+/* ══ Theme: Navy & Lavender (dark) ══════════════════════════════════
+   Profile pages share the hub's stored theme (localStorage 'hd2-theme'). */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --profile-paper: #0B1020;
+  --profile-card: #12192E;
+  --profile-soft: #1A2340;
+  --profile-raised: #16203A;
+  --profile-ink: #EEF2FF;
+  --profile-body: #C3CCE4;
+  --profile-muted: #94A3C4;
+  --profile-dim: #6E7FA3;
+  --profile-line: #253154;
+  --profile-line-soft: rgba(238, 242, 255, 0.08);
+  --profile-teal: #A78BFA;
+  --profile-gold: #8B6CE8;
+  --profile-accent-text: #C4B5FD;
+  --profile-accent-soft: rgba(167, 139, 250, 0.14);
+}
+[data-theme="dark"] .site-header { background: rgb(11 16 32 / 92%); }
+[data-theme="dark"] .status-dot { box-shadow: 0 0 12px rgba(167, 139, 250, 0.45); }
+[data-theme="dark"] .skip-link { color: #0B1020; }
+[data-theme="dark"] .profile-article img, [data-theme="dark"] .profile-article svg { background: var(--profile-soft); }
+
+/* Floating Light/Dark toggle — fixed bottom-right on hub and profile pages */
+.theme-toggle { position: fixed; right: 20px; bottom: 20px; z-index: 60; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border: 1px solid var(--profile-line); border-radius: 999px; background: var(--profile-card); color: var(--profile-ink); font-family: var(--profile-sans); font-size: 12px; font-weight: 700; letter-spacing: .2px; box-shadow: 0 10px 26px rgba(29, 25, 43, .16); transition: background .15s, border-color .15s, color .15s, transform .15s; }
+.theme-toggle:hover { border-color: var(--profile-teal); color: var(--profile-accent-text); transform: translateY(-2px); }
+.theme-toggle:focus-visible { outline: 3px solid var(--profile-teal); outline-offset: 3px; }
+.theme-toggle-icon { font-size: 15px; line-height: 1; }
+[data-theme="dark"] .theme-toggle { box-shadow: 0 12px 30px rgba(2, 5, 16, .66); }
+[data-theme="dark"] .theme-toggle:hover { background: var(--profile-raised); }
