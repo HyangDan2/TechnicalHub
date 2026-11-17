@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-11-18 — Shared hub navigation (desktop tabs + mobile drawer)
+
+- Replaced the hub header link row (`Browse Projects`, `ApplicationHub ↗`, `GameHub ↗`, `Web-HQ ↗`) with the Web-HQ category tabs: `Home · Apps · Play · Tech · Diary · About` in `.header-nav`, with `Tech` carrying `.is-active` and `aria-current="page"`. The separate Web-HQ action link is gone now that `Home` and the drawer cover it.
+- Added the mobile menu to the hub and to every generated profile page: a 44×44 `.menu-button` (≡) replaces the tabs at `<= 820px`, and the shared `js/nav.js` unfolds the right `.mobile-drawer` over a blurred `.drawer-backdrop`. The drawer lists `00 / HQ`, `01 / APPS`, `02 / PLAY`, `03 / EXPLORE`, `04 / DIARY`, `05 / ABOUT` with TechnicalHub marked current; Escape, the close button, the backdrop, and a link tap close it, focus returns to the ≡ button, and `body.drawer-open` hides the floating `#theme-toggle`.
+- Both stylesheets carry the same navigation block (`css/styles.css` on the hub tokens, `css/profile.css` on the `--profile-*` tokens), `_includes/layouts/profile.njk` keeps the sticky blurred bar around the new `.header-inner`, and the stylesheet cache busters moved to `?v=20261118-hub-nav`. The in-page `← Back to TechnicalHub` link is unchanged and remains the `#projects` return target, as documented in `docs/HARNESS_GUIDE.md` and `docs/PROFILE_CARD_GUIDE.md` (both updated for the new header).
+- Verification: `npm run validate` (4 profiles, 4 social previews) and `npm run build` pass; headless Chromium on the hub and on `/technologies/agent-core-platform/` at 1440×900 and 390×844, light and dark, reports 0 console errors and 0 horizontal overflow, with the drawer opening, marking `03 / EXPLORE`, and closing on Escape.
+
 ## 2026-11-16 — Soft Iris (white & violet) design language
 
 - Re-skinned both TechnicalHub surfaces to the Soft Iris tokens from `HyangDan2/Server-HQ` (`HD2Lab/hub-common.css`): `css/styles.css` for the hub (`#FAFAFD` ground, `#FFFFFF` panels, `#F4F1FC` soft panel, `#E8E4F2` lines, `#1D192B` text, `#68627A` muted, `#8B6CE8` accent, `#7655D9` hover, `#6B4CD6` small-text accent) and `css/profile.css` for the technology profiles (same palette through the `--profile-*` variables; links and small labels use `#6B4CD6`, the mark, dots, markers, and blockquote rule use `#8B6CE8`).
