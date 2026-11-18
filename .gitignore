@@ -1,5 +1,5 @@
 # Dependencies and local environment
-node_modules/
+node_modules
 .venv/
 venv/
 .env
