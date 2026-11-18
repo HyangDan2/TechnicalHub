@@ -72,7 +72,7 @@ The home page and all published profile pages must have a favicon, canonical URL
 
 Profile cards use the existing Soft Iris TechnicalHub/Hub home-page style. Detail pages use the Soft Iris editorial style built on the EDPilot0001 layout, implemented only in TechnicalHub's `_includes/layouts/profile.njk` and `css/profile.css`. Keep the styles isolated: do not load the Hub stylesheet on detail pages, and do not change the Hub theme to style a profile. EDPilot0001 is a visual reference only; do not copy its code, content, scripts, or assets.
 
-Every child profile detail page must include a visible `← Back to TechnicalHub` return link targeting `../../#projects`. From `/TechnicalHub/technologies/<slug>/`, this resolves to `/TechnicalHub/#projects`. The top-right hub menu starts with `← TechnicalHub` pointing at the same destination, followed by the ApplicationHub, GameHub, and Web-HQ links. The TechnicalHub brand links to the hub root (`../../`). Keep `Web-HQ` as a separate parent-site link; it is not the profile return destination.
+Every child profile detail page must include a visible `← Back to TechnicalHub` return link targeting `../../#projects`. From `/TechnicalHub/technologies/<slug>/`, this resolves to `/TechnicalHub/#projects`. The header uses the shared HD2Lab hub navigation: on desktop the `.header-nav` tabs `Home · Apps · Play · Tech · Diary · About`, with `Tech` marked `aria-current="page"` because a profile page belongs to TechnicalHub; on screens up to 820px the tabs collapse into the 44×44 `.menu-button` (≡) and the same six entries unfold as the right `.mobile-drawer` (`00 / HQ` … `05 / ABOUT`). The TechnicalHub brand links to the hub root (`../../`). The in-page `← Back to TechnicalHub` link, not a header tab, is the `#projects` return target.
 
 The public detail route is `/TechnicalHub/technologies/<slug>/`. Internal card links must use the generated profile route and work both locally and under the GitHub Pages base path. Profiles linking to an external repository are outside this profile-card contract and require an approved public repository URL.
 
@@ -94,7 +94,7 @@ Open the home page at `http://localhost:4174/` and check the following:
 - Search and category filtering continue to include or exclude the card correctly.
 - The detail page shows the approved article and assets, uses the EDPilot0001-inspired light style, and returns to the TechnicalHub home page.
 - The child page's visible `← Back to TechnicalHub` link resolves to `/TechnicalHub/#projects` and returns successfully; verify it does not point to Web-HQ or another profile.
-- The top-right `← TechHub` menu link also resolves to `/TechnicalHub/#projects`.
+- The header `Tech` tab resolves to `/TechnicalHub/`, the in-page `← Back to TechnicalHub` link resolves to `/TechnicalHub/#projects`, and the mobile ≡ opens the six-entry drawer.
 - The home page still uses the Hub style. At narrow and wide viewport sizes, neither page has clipped text, horizontal overflow, broken links, or unreadable media.
 - The favicon loads from the home and nested profile route. Home and profile pages expose canonical, Open Graph, and Twitter preview metadata. The home uses the shared 1200×630 image; each profile uses a different project-only 1200×630 preview and matching alternative text.
 - A draft or unavailable profile produces neither a public card nor a detail route.
