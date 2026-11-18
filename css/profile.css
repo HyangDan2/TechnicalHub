@@ -100,7 +100,7 @@ body.drawer-open .theme-toggle { opacity: 0; pointer-events: none; }
 .drawer-group.is-open .drawer-caret { transform: rotate(180deg); }
 .drawer-group.is-open .drawer-toggle { color: var(--profile-accent-text); }
 .drawer-sub { display: flex; flex-direction: column; gap: 2px; overflow: hidden; max-height: 0; opacity: 0; transition: max-height .3s cubic-bezier(.22, 1, .36, 1), opacity .2s ease; }
-.drawer-group.is-open .drawer-sub { max-height: 300px; opacity: 1; }
+.drawer-group.is-open .drawer-sub { max-height: 480px; opacity: 1; }
 .drawer-subitem { display: flex; align-items: center; min-height: 40px; margin-left: 13px; padding: 0 12px 0 20px; border-left: 1px solid var(--profile-line-soft); border-radius: 0 8px 8px 0; color: var(--profile-muted); font-size: 13.5px; font-weight: 500; letter-spacing: -.01em; text-decoration: none; transition: color .16s, background-color .16s, border-color .16s; }
 .drawer-subitem:hover, .drawer-subitem:focus-visible { border-left-color: var(--profile-teal); color: var(--profile-accent-text); background: var(--profile-soft); }
 
