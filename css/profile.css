@@ -225,3 +225,15 @@ html[data-theme="dark"] .theme-toggle .theme-toggle-ic[data-icon="sun"] { displa
 [data-theme="dark"] .theme-toggle { box-shadow: 0 12px 30px rgba(2, 5, 16, .66); }
 [data-theme="dark"] .theme-toggle:hover { background: var(--profile-raised); }
 @media (prefers-reduced-motion: reduce) { .theme-toggle, .theme-toggle:active { transition: none; transform: none; } }
+
+/* ── Footer visitor badge — Today · Total (profile pages) ─────────────────
+   The same pill as the hub's own footer, painted from the --profile-* tokens
+   so light and dark need no extra rules. The numbers come from the public
+   GoatCounter JSON API (js/visit-badge.js); the pill ships hidden and only
+   appears once a count arrives. */
+.visit-badge { display: inline-flex; align-items: center; gap: 7px; min-height: 26px; padding: 4px 11px; border: 1px solid var(--profile-line); border-radius: 999px; background: var(--profile-soft); color: var(--profile-muted); font-family: var(--profile-sans); font-size: 11px; font-weight: 500; line-height: 1; letter-spacing: .01em; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.visit-badge[hidden] { display: none; }
+.visit-badge .visit-eye { width: 13px; height: 13px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; color: var(--profile-accent-text); }
+.visit-badge .visit-num { font-weight: 700; color: var(--profile-ink); }
+.visit-badge .visit-sep { opacity: .5; }
+@media (max-width: 760px) { .site-footer { flex-wrap: wrap; row-gap: 14px; } }
