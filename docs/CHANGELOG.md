@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-11-21 — Diary-style social card
+
+- Replaced `assets/branding/share.png` (1200×630) with the `HD2's Diary` share-card layout: Soft Iris wash, dual-skew `.mark` + `HD2Lab | TechnicalHub` header, `Find your / next tech.` headline, the hero description and two chips on the left, and one white summary card on the right listing the four verified profiles with their stack line and domain (Agent Core Platform · AI/SW, Document Intelligence · AI/Data, Face Landmark Tracker · AI/ML, Video/Image Mixer · SW).
+- `og:image` / `twitter:image` cache buster → `?v=20261121-og` in `index.html`. `og:title`, `og:description`, the favicon set, the per-profile social cards, and the GoatCounter snippet are unchanged.
+
 ## 2026-11-18 — Shared hub navigation (desktop tabs + mobile drawer)
 
 - Replaced the hub header link row (`Browse Projects`, `ApplicationHub ↗`, `GameHub ↗`, `Web-HQ ↗`) with the Web-HQ category tabs: `Home · Apps · Play · Tech · Diary · About` in `.header-nav`, with `Tech` carrying `.is-active` and `aria-current="page"`. The separate Web-HQ action link is gone now that `Home` and the drawer cover it.
